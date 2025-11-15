@@ -1,12 +1,12 @@
 [
   {
     "id": "undergraduate",
-    "label": "本科",
+    "label": "**",
     "location": "./content/resume/undergraduate.json"
   },
   {
     "id": "master",
-    "label": "硕士",
+    "label": "**",
     "location": "./content/resume/master.json"
   }
 ]

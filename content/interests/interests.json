@@ -10,32 +10,32 @@
   {
     "id": "fitness",
     "icon": "ph-fill ph-barbell",
-    "title": "健身",
-    "mdFilePath": "./content/interests/fitness.md",
+    "title": "摆烂",
+    "mdFilePath": "./content/interests/slackoff.md",
     "hasVideo": false,
     "videoUrl": ""
   },
   {
     "id": "photography",
     "icon": "ph-fill ph-camera",
-    "title": "摄影",
-    "mdFilePath": "./content/interests/photography.md",
+    "title": "编曲",
+    "mdFilePath": "./content/interests/arrangement.md",
     "hasVideo": false,
     "videoUrl": ""
   },
   {
     "id": "blender",
     "icon": "ph-fill ph-cube",
-    "title": "Blender",
-    "mdFilePath": "./content/interests/blender.md",
+    "title": "二游",
+    "mdFilePath": "./content/interests/animegames.md",
     "hasVideo": false,
     "videoUrl": ""
   },
   {
     "id": "frontend",
     "icon": "ph-fill ph-code",
-    "title": "前端",
-    "mdFilePath": "./content/interests/frontend.md",
+    "title": "发疯",
+    "mdFilePath": "./content/interests/insanity.md",
     "hasVideo": false,
     "videoUrl": ""
   }
