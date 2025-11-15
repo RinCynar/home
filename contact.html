@@ -930,12 +930,8 @@
         (function() {
             const yearSpan = document.getElementById('copyright-year');
             if (yearSpan) {
-                const startYear = 2022;
                 const currentYear = new Date().getFullYear();
-                if (currentYear > startYear) {
-                    yearSpan.textContent = `${startYear}-${currentYear}`;
-                } else {
-                    yearSpan.textContent = startYear;
+                yearSpan.textContent = `${currentYear}`;
                 }
             }
         })();

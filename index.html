@@ -4914,13 +4914,8 @@
             const imageModalSrc = ref("");
 
             const copyrightYear = computed(() => {
-              const startYear = 2022;
               const currentYear = new Date().getFullYear();
-              if (currentYear > startYear) {
-                return `${startYear}-${currentYear}`;
-              } else {
-                return startYear;
-              }
+              return `${currentYear}`;
             });
 
             const filteredAndSortedRepos = computed(() => {
