@@ -3812,8 +3812,8 @@
               player.value.aplayer.play();
               moveLrcElement();
             } catch (error) {
-              console.error("音乐播放器操作失败:", error);
-              player.value.error = "音乐加载失败，请刷新或切换歌单。";
+              console.error("Music player operation failed:", error);
+              player.value.error = "Music loading failed, please refresh or switch playlists.";
               lrcAnimation.isRunning = false;
               if (lrcAnimation.rafId) cancelAnimationFrame(lrcAnimation.rafId);
               if (player.value.aplayer) {
