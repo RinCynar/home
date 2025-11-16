@@ -1,14 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact me - RinCynar</title>
-    <link rel="icon" href="./content/icon/favicon.png">
+    <link rel="icon" href="./content/icon/favicon.png" />
 
     <!-- 引用与你主页相同的字体和图标库 -->
-    <link rel="preconnect" href="https://source.xvyin.com">
-    <link href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DZCOOL%2BKuaiLe%26display%3Dswap" rel="stylesheet">
-    <link href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DInter%3Awght%40400%3B500%3B600%700%3B800%26display%3Dswap" rel="stylesheet">
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2F%40phosphor-icons%2Fweb" defer=""></script>
+    <link rel="preconnect" href="https://source.xvyin.com" />
+    <link
+      href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DZCOOL%2BKuaiLe%26display%3Dswap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DInter%3Awght%40400%3B500%3B600%700%3B800%26display%3Dswap"
+      rel="stylesheet"
+    />
+    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2F%40phosphor-icons%2Fweb" defer></script>
 
     <style>
         /* --- 1. :root 变量定义 (与主页风格保持一致) --- */
@@ -479,45 +487,45 @@
         </a>
         <h1>Contact me</h1>
 
-        <form id="contact-form" action="https://email.rincynar.top" method="POST" novalidate="">
+        <form id="contact-form" action="https://email.rincynar.top" method="POST" novalidate>
             <!-- !! 重要: 将上面的 action URL 替换成你自己的 Worker URL !! -->
             <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required="" autocomplete="name">
-                <div class="error-message">Name cannot be empty</div>
+                <label for="name">你的称呼</label>
+                <input type="text" id="name" name="name" required autocomplete="name">
+                <div class="error-message">称呼不能为空</div>
             </div>
             <div class="form-group">
-                <label for="contact-value">Your Contact Method</label>
+                <label for="contact-value">你的联系方式</label>
                 <div class="contact-input-group">
                     <div class="custom-select-wrapper">
                         <div class="custom-select">
                             <div class="custom-select-trigger">
-                                <span>Email</span>
+                                <span>邮箱</span>
                                 <i class="ph ph-caret-down"></i>
                             </div>
                             <div class="custom-options">
-                                <span class="custom-option selected" data-value="email">Email</span>
+                                <span class="custom-option selected" data-value="email">邮箱</span>
                                 <span class="custom-option" data-value="qq">QQ</span>
-                                <span class="custom-option" data-value="wechat">WeChat</span>
-                                <span class="custom-option" data-value="phone">Phone Number</span>
+                                <span class="custom-option" data-value="wechat">微信</span>
+                                <span class="custom-option" data-value="phone">手机号</span>
                             </div>
                         </div>
                     </div>
                     <input type="hidden" name="contact_method" id="contact-method-hidden" value="email">
-                    <input type="email" id="contact-value" name="contact_value" required="" placeholder="请输入你的邮箱地址" autocomplete="email">
+                    <input type="email" id="contact-value" name="contact_value" required placeholder="请输入你的邮箱地址" autocomplete="email">
                 </div>
-                <div class="error-message">Invalid contact format</div>
+                <div class="error-message">联系方式格式不正确</div>
             </div>
             <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" required="" maxlength="500"></textarea>
+                <label for="message">你想说的话</label>
+                <textarea id="message" name="message" required maxlength="500"></textarea>
                 <div class="textarea-footer">
-                   <div class="error-message">Message cannot be empty</div>
+                   <div class="error-message">内容不能为空</div>
                    <span class="char-counter">0 / 500</span>
                 </div>
             </div>
             <button type="submit" class="form-submit-button">
-                <span class="button-text">Send</span>
+                <span class="button-text">发送</span>
                 <div class="loader"></div>
             </button>
         </form>
@@ -534,7 +542,7 @@
         
         <footer class="site-footer">
             <p>
-                <span>Copyright© <span id="copyright-year"></span> RinCynar</span>
+                <span>Copyright&copy; <span id="copyright-year"></span> RinCynar</span>
                 <span>|</span>
                 <a href="https://beian.miit.gov.cn/" target="_blank"></a>
             </p>
@@ -928,10 +936,9 @@
             }
         })();
     </script>
+</body>
+</html>
 
 
 
 
-
-
-</body></html>

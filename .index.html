@@ -1,17 +1,31 @@
-<!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RinCynar</title>
-    <link rel="icon" href="./content/icon/favicon.png">
+    <link rel="icon" href="./content/icon/favicon.png" />
 
-    <link rel="preconnect" href="https://source.xvyin.com">
-    <link rel="preconnect" href="https://github.xvyin.com">
+    <link rel="preconnect" href="https://source.xvyin.com" />
+    <link rel="preconnect" href="https://github.xvyin.com" />
 
-    <link href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DZCOOL%2BKuaiLe%26display%3Dswap" rel="stylesheet">
-    <link href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DInter%3Awght%40400%3B500%3B600%3B700%3B800%26display%3Dswap" rel="stylesheet">
+    <link
+      href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DZCOOL%2BKuaiLe%26display%3Dswap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://source.xvyin.com/?target=https%3A%2F%2Ffonts.loli.net%2Fcss2%3Ffamily%3DInter%3Awght%40400%3B500%3B600%3B700%3B800%26display%3Dswap"
+      rel="stylesheet"
+    />
 
-    <link rel="stylesheet" href="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Faplayer%2F1.10.1%2FAPlayer.min.css">
-    <link rel="stylesheet" href="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fkatex.min.css">
+    <link
+      rel="stylesheet"
+      href="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Faplayer%2F1.10.1%2FAPlayer.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fkatex.min.css"
+    />
 
     <style>
       /* --- 1. :root 变量定义 --- */
@@ -2678,32 +2692,78 @@
     </div>
     <canvas id="particle-canvas"></canvas>
     <div id="app">
-      <header class="main-header glass-effect" :class="{ 'is-expanded': isHeaderExpanded, 'is-visible': isHeaderVisible }">
-        <img src="./content/icon/favicon.png" alt="Navigation avatar, click to log in" class="header-avatar" @click="toggleLoginModal">
+      <header
+        class="main-header glass-effect"
+        :class="{ 'is-expanded': isHeaderExpanded, 'is-visible': isHeaderVisible }"
+      >
+        <img
+          src="./content/icon/favicon.png"
+          alt="导航头像，点击可登录"
+          class="header-avatar"
+          @click="toggleLoginModal"
+        />
         <nav class="header-nav" aria-label="主导航">
-          <button v-for="link in visibleNavLinks" :key="link.id" @click="handleNavClick(link.id)" :class="{ active: activeSection === link.id }" :aria-current="activeSection === link.id ? 'page' : false">
+          <button
+            v-for="link in visibleNavLinks"
+            :key="link.id"
+            @click="handleNavClick(link.id)"
+            :class="{ active: activeSection === link.id }"
+            :aria-current="activeSection === link.id ? 'page' : false"
+          >
             {{ link.text }}
           </button>
         </nav>
       </header>
 
-      <div class="modal-overlay" :class="{'is-visible': isLoginModalVisible}" @click.self="toggleLoginModal">
-        <div role="dialog" aria-modal="true" aria-labelledby="login-title" class="modal-container">
+      <div
+        class="modal-overlay"
+        :class="{'is-visible': isLoginModalVisible}"
+        @click.self="toggleLoginModal"
+      >
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="login-title"
+          class="modal-container"
+        >
           <div class="modal-card-container">
             <div class="modal-card glass-effect">
               <form @submit.prevent="handleLogin">
-                <h3 id="login-title">Administrator Login</h3>
-                <p class="modal-status-message" :class="loginStatus.type" aria-live="polite">
+                <h3 id="login-title">管理员登录</h3>
+                <p
+                  class="modal-status-message"
+                  :class="loginStatus.type"
+                  aria-live="polite"
+                >
                   {{ loginStatus.message }}
                 </p>
                 <div class="form-group">
-                  <label for="username">Username</label><input type="text" id="username" v-model="username" required="" autocomplete="username">
+                  <label for="username">用户名</label
+                  ><input
+                    type="text"
+                    id="username"
+                    v-model="username"
+                    required
+                    autocomplete="username"
+                  />
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label><input type="password" id="password" v-model="password" required="" autocomplete="current-password">
+                  <label for="password">密码</label
+                  ><input
+                    type="password"
+                    id="password"
+                    v-model="password"
+                    required
+                    autocomplete="current-password"
+                  />
                 </div>
-                <button type="submit" class="form-submit-button" :disabled="isLoggingIn">
-                  <i v-if="isLoggingIn" class="ph ph-spinner-gap"></i><span>{{ isLoggingIn ? 'Logging in...' : 'Login' }}</span>
+                <button
+                  type="submit"
+                  class="form-submit-button"
+                  :disabled="isLoggingIn"
+                >
+                  <i v-if="isLoggingIn" class="ph ph-spinner-gap"></i
+                  ><span>{{ isLoggingIn ? '登录中...' : '登录' }}</span>
                 </button>
               </form>
             </div>
@@ -2711,77 +2771,163 @@
         </div>
       </div>
 
-      <div class="modal-overlay" :class="{'is-visible': isBookModalVisible}" @click.self="closeBookModal">
-        <div role="dialog" aria-modal="true" aria-labelledby="book-title" class="modal-container" v-if="selectedBook">
+      <div
+        class="modal-overlay"
+        :class="{'is-visible': isBookModalVisible}"
+        @click.self="closeBookModal"
+      >
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="book-title"
+          class="modal-container"
+          v-if="selectedBook"
+        >
           <div class="modal-card-container">
             <div class="modal-card glass-effect book-modal-card">
               <div class="book-modal-content">
                 <div class="book-modal-cover">
-                  <img :src="selectedBook.coverUrl" :alt="selectedBook.title" @error="handleImgError">
+                  <img
+                    :src="selectedBook.coverUrl"
+                    :alt="selectedBook.title"
+                    @error="handleImgError"
+                  />
                 </div>
                 <div class="book-modal-details">
                   <h3 id="book-title">{{ selectedBook.title }}</h3>
                   <p class="author">{{ selectedBook.author }}</p>
-                  <div class="rating-stars" :aria-label="selectedBook.rating + ' 星评价'">
-                    <span v-for="n in 5" :key="n">{{ n &lt;= selectedBook.rating ? '★' : '☆' }}</span>
+                  <div
+                    class="rating-stars"
+                    :aria-label="selectedBook.rating + ' 星评价'"
+                  >
+                    <span v-for="n in 5" :key="n"
+                      >{{ n <= selectedBook.rating ? '★' : '☆' }}</span
+                    >
                   </div>
                   <p class="review">“{{ selectedBook.review }}”</p>
                 </div>
               </div>
               <div class="book-modal-footer">
-                <a :href="selectedBook.url" target="_blank" class="book-modal-link">View Details</a>
+                <a
+                  :href="selectedBook.url"
+                  target="_blank"
+                  class="book-modal-link"
+                  >查看详情</a
+                >
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="scroll-indicator" :class="{ 'is-scrolling': isScrolling }" aria-hidden="true">
-        <div class="scroll-star" :style="{ transform: `translateY(calc(100vh * ${scrollProgress} - 50%))` }"></div>
+      <div
+        class="scroll-indicator"
+        :class="{ 'is-scrolling': isScrolling }"
+        aria-hidden="true"
+      >
+        <div
+          class="scroll-star"
+          :style="{ transform: `translateY(calc(100vh * ${scrollProgress} - 50%))` }"
+        ></div>
       </div>
 
       <!-- 新增: 图片预览模态框 -->
       <transition name="modal-fade">
-        <div class="image-modal-overlay" v-if="isImageModalVisible" @click="closeImageModal">
-          <button @click.stop="closeImageModal" class="close-image-modal-btn" aria-label="关闭图片预览">
-            ×
+        <div
+          class="image-modal-overlay"
+          v-if="isImageModalVisible"
+          @click="closeImageModal"
+        >
+          <button
+            @click.stop="closeImageModal"
+            class="close-image-modal-btn"
+            aria-label="关闭图片预览"
+          >
+            &times;
           </button>
-          <div class="image-modal-content" @click.stop="">
-            <img :src="imageModalSrc" alt="Enlarged Image">
+          <div class="image-modal-content" @click.stop>
+            <img :src="imageModalSrc" alt="放大后的图片" />
           </div>
         </div>
       </transition>
 
       <main class="main-content">
-        <section class="initial-hero-section" id="initial-hero" data-section="hero" aria-labelledby="hero-main-title">
+        <section
+          class="initial-hero-section"
+          id="initial-hero"
+          data-section="hero"
+          aria-labelledby="hero-main-title"
+        >
           <div class="danmaku-container" aria-hidden="true">
-            <transition-group name="danmaku-fade"><div v-for="item in activeDanmaku" :key="item.id" class="danmaku-item" :style="item.style">
+            <transition-group name="danmaku-fade"
+              ><div
+                v-for="item in activeDanmaku"
+                :key="item.id"
+                class="danmaku-item"
+                :style="item.style"
+              >
                 {{ item.name }}: {{ item.message }}
-              </div></transition-group>
+              </div></transition-group
+            >
           </div>
           <div class="hero-text-container">
             <p>
-              {{ heroLine1 }}<span v-if="heroLine1Active" class="waving-hand">👋</span>
+              {{ heroLine1 }}<span v-if="heroLine1Active" class="waving-hand"
+                >👋</span
+              >
             </p>
             <p>
-              {{ heroLine2 }}<span v-if="heroLine2Active" class="typing-cursor-hero"></span>
+              {{ heroLine2 }}<span
+                v-if="heroLine2Active"
+                class="typing-cursor-hero"
+              ></span>
             </p>
             <p>
-              {{ heroLine3 }}<span v-if="heroLine3Active" class="typing-cursor-hero"></span>
+              {{ heroLine3 }}<span
+                v-if="heroLine3Active"
+                class="typing-cursor-hero"
+              ></span>
             </p>
             <p>
-              {{ heroLine4 }}<span v-if="heroLine4Active" class="typing-cursor-hero"></span>
+              {{ heroLine4 }}<span
+                v-if="heroLine4Active"
+                class="typing-cursor-hero"
+              ></span>
             </p>
           </div>
-          <div class="hero-bottom-content" :class="{ visible: showHeroButtons }">
+          <div
+            class="hero-bottom-content"
+            :class="{ visible: showHeroButtons }"
+          >
             <div class="hero-player-container">
-              <transition name="player-fade"><p v-if="player.error" class="error-message">
+              <transition name="player-fade"
+                ><p v-if="player.error" class="error-message">
                   {{ player.error }}
                 </p>
-                <button v-else-if="!player.isInitialized &amp;&amp; !player.isLoading" @click="switchSonglist(currentSongId)" aria-label="播放音乐" class="play-button glass-effect">
-                  <i class="ph-fill ph-play"></i></button></transition><transition name="player-fade"><div v-if="player.isLoading" class="loading-spinner" aria-label="音乐加载中"></div></transition><transition name="player-fade"><div class="player-wrapper glass-effect" v-if="player.isInitialized">
+                <button
+                  v-else-if="!player.isInitialized && !player.isLoading"
+                  @click="switchSonglist(currentSongId)"
+                  aria-label="播放音乐"
+                  class="play-button glass-effect"
+                >
+                  <i class="ph-fill ph-play"></i></button></transition
+              ><transition name="player-fade"
+                ><div
+                  v-if="player.isLoading"
+                  class="loading-spinner"
+                  aria-label="音乐加载中"
+                ></div></transition
+              ><transition name="player-fade"
+                ><div
+                  class="player-wrapper glass-effect"
+                  v-if="player.isInitialized"
+                >
                   <div id="player" class="custom-player">
-                    <img :src="player.currentSong.cover" :alt="`${player.currentSong.name} 的封面`" class="custom-player-cover">
+                    <img
+                      :src="player.currentSong.cover"
+                      :alt="`${player.currentSong.name} 的封面`"
+                      class="custom-player-cover"
+                    />
                     <div class="custom-player-info-wrapper">
                       <div class="custom-player-info">
                         <div class="custom-player-title">
@@ -2791,28 +2937,87 @@
                           {{ player.currentSong.artist }}
                         </div>
                       </div>
-                      <div class="custom-player-progress-container" @click="seek">
-                        <div class="custom-player-progress-bar" :style="{ width: player.progress + '%' }"></div>
+                      <div
+                        class="custom-player-progress-container"
+                        @click="seek"
+                      >
+                        <div
+                          class="custom-player-progress-bar"
+                          :style="{ width: player.progress + '%' }"
+                        ></div>
                       </div>
                     </div>
                     <div class="custom-player-controls">
                       <div class="volume-control-wrapper">
-                        <i class="ph-fill" :class="player.volume > 0.5 ? 'ph-speaker-high' : player.volume > 0 ? 'ph-speaker-low' : 'ph-speaker-slash'"></i><input type="range" class="volume-slider" min="0" max="1" step="0.01" v-model="player.volume" @input="setVolume" :style="{'--volume-percent': player.volume * 100 + '%'}" aria-label="音量控制">
+                        <i
+                          class="ph-fill"
+                          :class="player.volume > 0.5 ? 'ph-speaker-high' : player.volume > 0 ? 'ph-speaker-low' : 'ph-speaker-slash'"
+                        ></i
+                        ><input
+                          type="range"
+                          class="volume-slider"
+                          min="0"
+                          max="1"
+                          step="0.01"
+                          v-model="player.volume"
+                          @input="setVolume"
+                          :style="{'--volume-percent': player.volume * 100 + '%'}"
+                          aria-label="音量控制"
+                        />
                       </div>
-                      <button @click="toggleShuffle" :class="{ 'active': player.isShuffle }" aria-label="随机播放" title="随机播放">
-                        <i class="ph-fill ph-shuffle"></i></button><button @click="cyclePlaybackRate" class="playback-rate-btn" :aria-label="'播放速度: ' + player.playbackRate.toFixed(2) + 'x'" :title="'播放速度: ' + player.playbackRate.toFixed(2) + 'x'">
-                        {{ player.playbackRate.toFixed(1) }}x</button><button @click="player.aplayer.skipBack()" aria-label="上一首">
-                        <i class="ph-fill ph-skip-back"></i></button><button @click="player.aplayer.toggle()" :aria-label="player.isPlaying ? '暂停' : '播放'">
-                        <i :class="player.isPlaying ? 'ph-fill ph-pause' : 'ph-fill ph-play'"></i></button><button @click="player.aplayer.skipForward()" aria-label="下一首">
-                        <i class="ph-fill ph-skip-forward"></i></button><button @click="togglePlaylist" aria-label="播放列表">
-                        <i class="ph-fill ph-list"></i></button><button @click="toggleSonglistSwitcher" aria-label="切换歌单">
+                      <button
+                        @click="toggleShuffle"
+                        :class="{ 'active': player.isShuffle }"
+                        aria-label="随机播放"
+                        title="随机播放"
+                      >
+                        <i class="ph-fill ph-shuffle"></i></button
+                      ><button
+                        @click="cyclePlaybackRate"
+                        class="playback-rate-btn"
+                        :aria-label="'播放速度: ' + player.playbackRate.toFixed(2) + 'x'"
+                        :title="'播放速度: ' + player.playbackRate.toFixed(2) + 'x'"
+                      >
+                        {{ player.playbackRate.toFixed(1) }}x</button
+                      ><button
+                        @click="player.aplayer.skipBack()"
+                        aria-label="上一首"
+                      >
+                        <i class="ph-fill ph-skip-back"></i></button
+                      ><button
+                        @click="player.aplayer.toggle()"
+                        :aria-label="player.isPlaying ? '暂停' : '播放'"
+                      >
+                        <i
+                          :class="player.isPlaying ? 'ph-fill ph-pause' : 'ph-fill ph-play'"
+                        ></i></button
+                      ><button
+                        @click="player.aplayer.skipForward()"
+                        aria-label="下一首"
+                      >
+                        <i class="ph-fill ph-skip-forward"></i></button
+                      ><button @click="togglePlaylist" aria-label="播放列表">
+                        <i class="ph-fill ph-list"></i></button
+                      ><button
+                        @click="toggleSonglistSwitcher"
+                        aria-label="切换歌单"
+                      >
                         <i class="ph-fill ph-stack"></i>
                       </button>
                     </div>
                   </div>
                   <div ref="lrcContainer" class="custom-lrc-container"></div>
-                  <div class="playlist-container" :class="{ show: player.isPlaylistVisible }">
-                    <div v-for="(song, index) in player.playlist" :key="song.url" class="playlist-item" :class="{ active: player.currentSong.url === song.url }" @click="player.aplayer.list.switch(index)">
+                  <div
+                    class="playlist-container"
+                    :class="{ show: player.isPlaylistVisible }"
+                  >
+                    <div
+                      v-for="(song, index) in player.playlist"
+                      :key="song.url"
+                      class="playlist-item"
+                      :class="{ active: player.currentSong.url === song.url }"
+                      @click="player.aplayer.list.switch(index)"
+                    >
                       <span class="index">{{ index + 1 }}</span>
                       <div class="info">
                         <div class="title">{{ song.name }}</div>
@@ -2820,35 +3025,71 @@
                       </div>
                     </div>
                   </div>
-                  <div class="songlist-switcher" :class="{ show: player.isSongSwitcherVisible }">
-                    <h4>Preset Playlists</h4>
+                  <div
+                    class="songlist-switcher"
+                    :class="{ show: player.isSongSwitcherVisible }"
+                  >
+                    <h4>预设歌单</h4>
                     <ul class="songlist-presets">
-                      <li v-for="list in presetSonglists" :key="list.id" @click="switchSonglist(list.id)" :class="{ active: list.id === currentSongId || (list.id === 'local_folder_picker' &amp;&amp; currentSongId === 'local_folder') }">
+                      <li
+                        v-for="list in presetSonglists"
+                        :key="list.id"
+                        @click="switchSonglist(list.id)"
+                        :class="{ active: list.id === currentSongId || (list.id === 'local_folder_picker' && currentSongId === 'local_folder') }"
+                      >
                         <span>{{ list.name }}</span>
                       </li>
                     </ul>
-                    <h5 v-if="customSonglists.length > 0">My Playlists</h5>
-                    <ul class="songlist-custom" v-if="customSonglists.length > 0">
-                      <li v-for="list in customSonglists" :key="list.id" @click="switchSonglist(list.id)" :class="{active: list.id === currentSongId}">
-                        <span>{{ list.name }}</span><button @click.stop="removeCustomSonglist(list.id)" class="remove-btn" title="删除这个歌单">
+                    <h5 v-if="customSonglists.length > 0">我的歌单</h5>
+                    <ul
+                      class="songlist-custom"
+                      v-if="customSonglists.length > 0"
+                    >
+                      <li
+                        v-for="list in customSonglists"
+                        :key="list.id"
+                        @click="switchSonglist(list.id)"
+                        :class="{active: list.id === currentSongId}"
+                      >
+                        <span>{{ list.name }}</span
+                        ><button
+                          @click.stop="removeCustomSonglist(list.id)"
+                          class="remove-btn"
+                          title="删除这个歌单"
+                        >
                           <i class="ph ph-x"></i>
                         </button>
                       </li>
                     </ul>
                     <div class="songlist-input-group">
                       <div class="songlist-input-row">
-                        <input type="text" name="songlist-id" v-model="newSongIdInput" placeholder="歌单ID (纯数字)" @keydown.enter.prevent="addAndSwitchSonglist"><input type="text" name="songlist-name" v-model="newSongNameInput" placeholder="歌单名称 (可选)" @keydown.enter.prevent="addAndSwitchSonglist">
+                        <input
+                          type="text"
+                          name="songlist-id"
+                          v-model="newSongIdInput"
+                          placeholder="歌单ID (纯数字)"
+                          @keydown.enter.prevent="addAndSwitchSonglist"
+                        /><input
+                          type="text"
+                          name="songlist-name"
+                          v-model="newSongNameInput"
+                          placeholder="歌单名称 (可选)"
+                          @keydown.enter.prevent="addAndSwitchSonglist"
+                        />
                       </div>
-                      <button @click="addAndSwitchSonglist">Add and Play</button>
+                      <button @click="addAndSwitchSonglist">添加并播放</button>
                     </div>
                   </div>
-                </div></transition>
+                </div></transition
+              >
               <div id="player-hidden"></div>
             </div>
           </div>
         </section>
         <section id="about" class="content-section" data-section="about">
-          <article class="about-us-card content-card glass-effect anim-fade-in-up">
+          <article
+            class="about-us-card content-card glass-effect anim-fade-in-up"
+          >
             <div class="about-sidebar">
               <div class="sidebar-text">Until...</div>
               <div class="sidebar-line"></div>
@@ -2860,73 +3101,133 @@
         </section>
         <section id="interactive-journey" data-section="hub">
           <transition name="panel-fade" mode="out-in">
-            <div class="journey-hub" v-if="!activeJourneyPanel" key="journey-hub">
+            <div
+              class="journey-hub"
+              v-if="!activeJourneyPanel"
+              key="journey-hub"
+            >
               <div class="hub-intro">
                 <h2>About</h2>
                 <blockquote>
                   「
-                  <strong>And it's a long way forward...</strong>
+                  <strong
+                    >And it's a long way forward...</strong
+                  >
                   」
                 </blockquote>
               </div>
-              <transition-group tag="div" class="hub-grid" appear="" @before-enter="onBeforeEnter" @enter="onEnter"><article class="hub-node" v-for="(node, index) in hubNodes" :key="node.id" :data-index="index" @click="openJourneyPanel(node.id)" tabindex="0" @keydown.enter="openJourneyPanel(node.id)">
+              <transition-group
+                tag="div"
+                class="hub-grid"
+                appear
+                @before-enter="onBeforeEnter"
+                @enter="onEnter"
+                ><article
+                  class="hub-node"
+                  v-for="(node, index) in hubNodes"
+                  :key="node.id"
+                  :data-index="index"
+                  @click="openJourneyPanel(node.id)"
+                  tabindex="0"
+                  @keydown.enter="openJourneyPanel(node.id)"
+                >
                   <i :class="node.icon"></i>
                   <h3>{{ node.title }}</h3>
                   <p>{{ node.text }}</p>
-                </article></transition-group>
+                </article></transition-group
+              >
             </div>
-            <div v-else="" key="journey-panels">
-              <div id="resume-panel" class="journey-panel" v-if="activeJourneyPanel === 'resume'">
-                <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
-                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="关闭面板" title="关闭">
+            <div v-else key="journey-panels">
+              <div
+                id="resume-panel"
+                class="journey-panel"
+                v-if="activeJourneyPanel === 'resume'"
+              >
+                <article
+                  class="content-card glass-effect"
+                  ref="activePanelRef"
+                  @click="handleAppClick"
+                >
+                  <button
+                    @click="closeJourneyPanel"
+                    class="close-panel-btn"
+                    aria-label="关闭面板"
+                    title="关闭"
+                  >
                     <i class="ph ph-x"></i>
                   </button>
 
-                  <div class="creations-tabs" style="justify-content: center; margin-bottom: 2rem">
-                    <button v-for="resume in resumesList" :key="resume.id" class="tab-button" :class="{ active: resume.id === activeResumeId }" @click="switchResume(resume)">
+                  <div
+                    class="creations-tabs"
+                    style="justify-content: center; margin-bottom: 2rem"
+                  >
+                    <button
+                      v-for="resume in resumesList"
+                      :key="resume.id"
+                      class="tab-button"
+                      :class="{ active: resume.id === activeResumeId }"
+                      @click="switchResume(resume)"
+                    >
                       <span>{{ resume.label }}</span>
                     </button>
                   </div>
 
                   <transition name="content-fade" mode="out-in">
-                    <div v-if="!resumeData.name" key="loading" class="loading-placeholder" aria-busy="true" style="text-align: center; padding: 4rem 0">
-                      Loading resume...
+                    <div
+                      v-if="!resumeData.name"
+                      key="loading"
+                      class="loading-placeholder"
+                      aria-busy="true"
+                      style="text-align: center; padding: 4rem 0"
+                    >
+                      正在加载简历...
                     </div>
-                    <div v-else="" key="content">
+                    <div v-else key="content">
                       <div class="resume-header">
                         <h1>{{ resumeData.name }}</h1>
                         <div class="resume-contact">
-                          <span class="resume-contact-item"><i class="ph-fill ph-phone"></i> {{
-                            resumeData.phone }}</span><span class="resume-contact-item"><i class="ph-fill ph-envelope-simple"></i> {{
-                            resumeData.email }}</span><span class="resume-contact-item"><i class="ph-fill ph-map-pin"></i> {{
-                            resumeData.location }}</span><span class="resume-contact-item"><i class="ph-fill ph-flag"></i> {{
-                            resumeData.politicalStatus }}</span>
+                          <span class="resume-contact-item"
+                            ><i class="ph-fill ph-phone"></i> {{
+                            resumeData.phone }}</span
+                          ><span class="resume-contact-item"
+                            ><i class="ph-fill ph-envelope-simple"></i> {{
+                            resumeData.email }}</span
+                          ><span class="resume-contact-item"
+                            ><i class="ph-fill ph-map-pin"></i> {{
+                            resumeData.location }}</span
+                          ><span class="resume-contact-item"
+                            ><i class="ph-fill ph-flag"></i> {{
+                            resumeData.politicalStatus }}</span
+                          >
                         </div>
                       </div>
                       <div class="resume-section">
                         <h3>
-                          <i class="ph-fill ph-graduation-cap"></i> Education Background
+                          <i class="ph-fill ph-graduation-cap"></i> 教育背景
                         </h3>
                         <div class="education-grid">
-                          <div class="education-item" v-for="edu in resumeData.education">
+                          <div
+                            class="education-item"
+                            v-for="edu in resumeData.education"
+                          >
                             <div class="item-header">
                               <h4>{{ edu.institution }}</h4>
                               <span class="date">{{ edu.duration }}</span>
                             </div>
                             <p class="item-subheader">
-                              {{ edu.major }} | Minor: {{ edu.minor }}
+                              {{ edu.major }} | 辅修: {{ edu.minor }}
                             </p>
                             <div class="item-details">
                               <ul>
                                 <li>
-                                  GPA: {{ edu.gpa }} | Major Grades: {{
-                                  edu.majorScore }} (Rank {{ edu.ranking }})
+                                  GPA: {{ edu.gpa }} | 专业成绩: {{
+                                  edu.majorScore }} (排名 {{ edu.ranking }})
                                 </li>
                                 <li>
-                                  Major Courses: {{ edu.courses.major.join('、') }}
+                                  主修课程: {{ edu.courses.major.join('、') }}
                                 </li>
                                 <li>
-                                  Minor Courses: {{ edu.courses.minor.join('、') }}
+                                  辅修课程: {{ edu.courses.minor.join('、') }}
                                 </li>
                               </ul>
                             </div>
@@ -2934,26 +3235,32 @@
                         </div>
                       </div>
                       <div class="resume-section">
-                        <h3><i class="ph-fill ph-kanban"></i> Project Experience</h3>
+                        <h3><i class="ph-fill ph-kanban"></i> 项目经历</h3>
                         <div class="experience-grid">
-                          <div class="project-item" v-for="proj in resumeData.projects">
+                          <div
+                            class="project-item"
+                            v-for="proj in resumeData.projects"
+                          >
                             <div class="item-header">
                               <h4>{{ proj.name }}</h4>
                               <span class="date">{{ proj.duration }}</span>
                             </div>
-                            <p class="item-subheader">Role: {{ proj.role }}</p>
+                            <p class="item-subheader">角色: {{ proj.role }}</p>
                             <div class="item-details">
-                              <p><strong>Task:</strong> {{ proj.task }}</p>
-                              <p><strong>Action:</strong> {{ proj.action }}</p>
-                              <p><strong>Result:</strong> {{ proj.result }}</p>
+                              <p><strong>任务:</strong> {{ proj.task }}</p>
+                              <p><strong>行动:</strong> {{ proj.action }}</p>
+                              <p><strong>结果:</strong> {{ proj.result }}</p>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="resume-section">
-                        <h3><i class="ph-fill ph-users"></i> School Experience</h3>
+                        <h3><i class="ph-fill ph-users"></i> 在校经历</h3>
                         <div class="experience-grid">
-                          <div class="experience-item" v-for="exp in resumeData.campusExperience">
+                          <div
+                            class="experience-item"
+                            v-for="exp in resumeData.campusExperience"
+                          >
                             <div class="item-header">
                               <h4>{{ exp.role }}</h4>
                               <span class="date">{{ exp.duration }}</span>
@@ -2965,21 +3272,30 @@
                         </div>
                       </div>
                       <div class="resume-section">
-                        <h3><i class="ph-fill ph-brain"></i> Relevant Skills</h3>
+                        <h3><i class="ph-fill ph-brain"></i> 相关技能</h3>
                         <div class="skills-container">
-                          <div class="skill-category" v-for="cat in resumeData.skills">
+                          <div
+                            class="skill-category"
+                            v-for="cat in resumeData.skills"
+                          >
                             <h4>{{ cat.category }}</h4>
                             <div class="skill-list">
-                              <span class="skill-tag" v-for="skill in cat.items">{{ skill }}</span>
+                              <span class="skill-tag" v-for="skill in cat.items"
+                                >{{ skill }}</span
+                              >
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="resume-section">
-                        <h3><i class="ph-fill ph-trophy"></i> Honors and Certifications</h3>
+                        <h3><i class="ph-fill ph-trophy"></i> 荣誉证书</h3>
                         <div class="honors-list">
-                          <div class="honor-item" v-for="honor in resumeData.honors">
-                            <i class="ph-fill ph-seal-check"></i><span>{{ honor }}</span>
+                          <div
+                            class="honor-item"
+                            v-for="honor in resumeData.honors"
+                          >
+                            <i class="ph-fill ph-seal-check"></i
+                            ><span>{{ honor }}</span>
                           </div>
                         </div>
                       </div>
@@ -2987,105 +3303,221 @@
                   </transition>
                 </article>
               </div>
-              <div id="creations-panel" class="journey-panel" v-if="activeJourneyPanel === 'creations'">
-                <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
-                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="关闭面板" title="关闭">
+              <div
+                id="creations-panel"
+                class="journey-panel"
+                v-if="activeJourneyPanel === 'creations'"
+              >
+                <article
+                  class="content-card glass-effect"
+                  ref="activePanelRef"
+                  @click="handleAppClick"
+                >
+                  <button
+                    @click="closeJourneyPanel"
+                    class="close-panel-btn"
+                    aria-label="关闭面板"
+                    title="关闭"
+                  >
                     <i class="ph ph-x"></i>
                   </button>
-                  <h2>Creation and Knowledge</h2>
+                  <h2>创造与知识</h2>
                   <div class="creations-tabs">
-                    <button class="tab-button" :class="{ active: creationsTabActive === 'github' }" @click="creationsTabActive = 'github'">
+                    <button
+                      class="tab-button"
+                      :class="{ active: creationsTabActive === 'github' }"
+                      @click="creationsTabActive = 'github'"
+                    >
                       <i class="ph-fill ph-github-logo"></i><span>GitHub</span>
                     </button>
-                    <button class="tab-button" :class="{ active: creationsTabActive === 'bookshelf' }" @click="creationsTabActive = 'bookshelf'">
-                      <i class="ph-fill ph-books"></i><span>Bookshelf</span>
+                    <button
+                      class="tab-button"
+                      :class="{ active: creationsTabActive === 'bookshelf' }"
+                      @click="creationsTabActive = 'bookshelf'"
+                    >
+                      <i class="ph-fill ph-books"></i><span>书架</span>
                     </button>
-                    <button class="tab-button" :class="{ active: creationsTabActive === 'growth' }" @click="creationsTabActive = 'growth'">
-                      <i class="ph-fill ph-trend-up"></i><span>Growth and Trends</span>
+                    <button
+                      class="tab-button"
+                      :class="{ active: creationsTabActive === 'growth' }"
+                      @click="creationsTabActive = 'growth'"
+                    >
+                      <i class="ph-fill ph-trend-up"></i><span>成长与动态</span>
                     </button>
-                    <button class="tab-button" :class="{ active: creationsTabActive === 'blog' }" @click="creationsTabActive = 'blog'">
-                      <i class="ph-fill ph-pencil-line"></i><span>Articles and Insights</span>
+                    <button
+                      class="tab-button"
+                      :class="{ active: creationsTabActive === 'blog' }"
+                      @click="creationsTabActive = 'blog'"
+                    >
+                      <i class="ph-fill ph-pencil-line"></i
+                      ><span>文章与感悟</span>
                     </button>
                   </div>
                   <div class="tab-content">
-                    <transition name="content-fade" mode="out-in" @after-enter="onTabTransitionEnd" @before-leave="onTabTransitionStart">
+                    <transition
+                      name="content-fade"
+                      mode="out-in"
+                      @after-enter="onTabTransitionEnd"
+                      @before-leave="onTabTransitionStart"
+                    >
                       <div v-if="creationsTabActive === 'github'" key="github">
                         <div class="github-overview">
                           <div class="stat-card">
                             <div class="stat-value">
                               {{ github.stats.contributions }}
                             </div>
-                            <div class="stat-label">Annual Contributions</div>
+                            <div class="stat-label">年度贡献数</div>
                           </div>
                           <div class="stat-card">
                             <div class="stat-value">
                               {{ github.stats.repos }}
                             </div>
-                            <div class="stat-label">Public Repositories</div>
+                            <div class="stat-label">公开仓库数</div>
                           </div>
                           <div class="stat-card">
                             <div class="stat-value">
                               {{ github.stats.stars }}
                             </div>
-                            <div class="stat-label">Total Stars</div>
+                            <div class="stat-label">总 Star 数</div>
                           </div>
                           <div class="stat-card">
                             <div class="stat-value">
                               {{ github.stats.forks }}
                             </div>
-                            <div class="stat-label">Total Forks</div>
+                            <div class="stat-label">总 Fork 数</div>
                           </div>
                         </div>
                         <div class="filters-container">
                           <div class="filter-group">
-                            <label for="sort-repos">Sort by:</label><select id="sort-repos" v-model="github.sortKey">
-                              <option value="pushed_at">Recently Updated</option>
+                            <label for="sort-repos">排序:</label
+                            ><select id="sort-repos" v-model="github.sortKey">
+                              <option value="pushed_at">最近更新</option>
                               <option value="stargazers_count">
-                                Most Stars
+                                最多 Star
                               </option>
-                              <option value="forks_count">Most Forks</option>
+                              <option value="forks_count">最多 Fork</option>
                             </select>
                           </div>
                           <div class="filter-group">
-                            <label for="filter-lang">Language:</label><input id="filter-lang" type="text" v-model="github.filterLanguage" placeholder="e.g., JavaScript">
+                            <label for="filter-lang">语言:</label
+                            ><input
+                              id="filter-lang"
+                              type="text"
+                              v-model="github.filterLanguage"
+                              placeholder="e.g., JavaScript"
+                            />
                           </div>
                         </div>
                         <div v-if="github.error" class="error-message">
                           {{ github.error }}
                         </div>
                         <div class="repo-grid" v-if="!github.isLoading">
-                          <a v-for="repo in github.pinnedRepos" :key="repo.name" :href="repo.link" target="_blank" class="repo-card pinned-repo-card"><h3>{{ repo.repo }}</h3>
-                            <p>{{ repo.description || 'No description available' }}</p>
+                          <a
+                            v-for="repo in github.pinnedRepos"
+                            :key="repo.name"
+                            :href="repo.link"
+                            target="_blank"
+                            class="repo-card pinned-repo-card"
+                            ><h3>{{ repo.repo }}</h3>
+                            <p>{{ repo.description || '暂无描述' }}</p>
                             <div class="repo-stats">
-                              <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M10.868 2.884c.321.64.321 1.393 0 2.034a.985.985 0 01-1.737 0c.321-.64.321-1.393 0-2.034a.985.985 0 011.737 0zM12 12.5a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM10.5 6a.5.5 0 00-1 0v6a.5.5 0 001 0V6z" clip-rule="evenodd"></path>
-                                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-1.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z"></path>
+                              <span
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M10.868 2.884c.321.64.321 1.393 0 2.034a.985.985 0 01-1.737 0c.321-.64.321-1.393 0-2.034a.985.985 0 011.737 0zM12 12.5a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM10.5 6a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"
+                                    clip-rule="evenodd"
+                                  />
+                                  <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-1.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z"
+                                  />
                                 </svg>
-                                {{ repo.language || 'Text' }}</span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                {{ repo.language || 'Text' }}</span
+                              ><span
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                  />
                                 </svg>
-                                {{ repo.stars }}</span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M15.312 5.312l-1.422 1.422L12 8.156l-1.89-1.89a.75.75 0 00-1.06 1.061l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422a.75.75 0 101.06 1.06L9.89 13.94l1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422a.75.75 0 10-1.06-1.06z" clip-rule="evenodd"></path>
+                                {{ repo.stars }}</span
+                              ><span
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M15.312 5.312l-1.422 1.422L12 8.156l-1.89-1.89a.75.75 0 00-1.06 1.061l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422a.75.75 0 101.06 1.06L9.89 13.94l1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422a.75.75 0 10-1.06-1.06z"
+                                    clip-rule="evenodd"
+                                  />
                                 </svg>
-                                {{ repo.forks }}</span>
-                            </div></a>
-                          <a v-for="repo in filteredAndSortedRepos" :key="repo.id" :href="repo.html_url" target="_blank" class="repo-card"><h3>{{ repo.name }}</h3>
-                            <p>{{ repo.description || 'No description available' }}</p>
+                                {{ repo.forks }}</span
+                              >
+                            </div></a
+                          >
+                          <a
+                            v-for="repo in filteredAndSortedRepos"
+                            :key="repo.id"
+                            :href="repo.html_url"
+                            target="_blank"
+                            class="repo-card"
+                            ><h3>{{ repo.name }}</h3>
+                            <p>{{ repo.description || '暂无描述' }}</p>
                             <div class="repo-stats">
-                              <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M10.868 2.884c.321.64.321 1.393 0 2.034a.985.985 0 01-1.737 0c.321-.64.321-1.393 0-2.034a.985.985 0 011.737 0zM12 12.5a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM10.5 6a.5.5 0 00-1 0v6a.5.5 0 001 0V6z" clip-rule="evenodd"></path>
-                                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-1.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z"></path>
+                              <span
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M10.868 2.884c.321.64.321 1.393 0 2.034a.985.985 0 01-1.737 0c.321-.64.321-1.393 0-2.034a.985.985 0 011.737 0zM12 12.5a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM10.5 6a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"
+                                    clip-rule="evenodd"
+                                  />
+                                  <path
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-1.5a6.5 6.5 0 110-13 6.5 6.5 0 010 13z"
+                                  />
                                 </svg>
-                                {{ repo.language || 'Text' }}</span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                {{ repo.language || 'Text' }}</span
+                              ><span
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                                  />
                                 </svg>
-                                {{ repo.stargazers_count }}</span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M15.312 5.312l-1.422 1.422L12 8.156l-1.89-1.89a.75.75 0 00-1.06 1.061l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422a.75.75 0 101.06 1.06L9.89 13.94l1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422a.75.75 0 10-1.06-1.06z" clip-rule="evenodd"></path>
+                                {{ repo.stargazers_count }}</span
+                              ><span
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M15.312 5.312l-1.422 1.422L12 8.156l-1.89-1.89a.75.75 0 00-1.06 1.061l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422-1.89-1.89a.75.75 0 10-1.06 1.06l1.89 1.89-1.422 1.422a.75.75 0 101.06 1.06L9.89 13.94l1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422 1.89 1.89a.75.75 0 101.06-1.06l-1.89-1.89 1.422-1.422a.75.75 0 10-1.06-1.06z"
+                                    clip-rule="evenodd"
+                                  />
                                 </svg>
-                                {{ repo.forks_count }}</span>
-                            </div></a>
+                                {{ repo.forks_count }}</span
+                              >
+                            </div></a
+                          >
                         </div>
-                        <div class="repo-grid" v-else="">
+                        <div class="repo-grid" v-else>
                           <div v-for="n in 6" class="skeleton-card">
                             <div class="skeleton-line h-6"></div>
                             <div class="skeleton-line h-4 w-full"></div>
@@ -3096,34 +3528,76 @@
                             </div>
                           </div>
                         </div>
-                        <button v-if="github.canLoadMore" @click="loadMoreRepos" class="load-more-btn" :disabled="github.isLoadingMore">
-                          <i v-if="github.isLoadingMore" class="ph ph-spinner-gap animate-spin"></i><span>{{ github.isLoadingMore ? 'Loading...' : 'Load More'
-                            }}</span>
+                        <button
+                          v-if="github.canLoadMore"
+                          @click="loadMoreRepos"
+                          class="load-more-btn"
+                          :disabled="github.isLoadingMore"
+                        >
+                          <i
+                            v-if="github.isLoadingMore"
+                            class="ph ph-spinner-gap animate-spin"
+                          ></i
+                          ><span
+                            >{{ github.isLoadingMore ? 'Loading...' : 'Load More'
+                            }}</span
+                          >
                         </button>
                       </div>
-                      <div v-else-if="creationsTabActive === 'bookshelf'" key="bookshelf">
+                      <div
+                        v-else-if="creationsTabActive === 'bookshelf'"
+                        key="bookshelf"
+                      >
                         <div class="filters-container book-category-pills">
-                          <button v-for="category in bookCategories" :key="category" @click="bookshelf.activeCategory = category" :class="{ active: bookshelf.activeCategory === category }">
+                          <button
+                            v-for="category in bookCategories"
+                            :key="category"
+                            @click="bookshelf.activeCategory = category"
+                            :class="{ active: bookshelf.activeCategory === category }"
+                          >
                             {{ category }}
                           </button>
                         </div>
                         <div class="book-grid">
-                          <div v-for="book in filteredBooks" :key="book.title" @click="openBookModal(book)" class="book-card">
-                            <span v-if="book.status" class="book-status-tag" :class="book.status">{{ book.status === 'reading' ? 'Reading' : 'Read'
-                              }}</span><img :src="book.coverUrl" :alt="book.title" class="book-cover" @error="handleImgError" loading="lazy">
+                          <div
+                            v-for="book in filteredBooks"
+                            :key="book.title"
+                            @click="openBookModal(book)"
+                            class="book-card"
+                          >
+                            <span
+                              v-if="book.status"
+                              class="book-status-tag"
+                              :class="book.status"
+                              >{{ book.status === 'reading' ? 'Reading' : 'Read'
+                              }}</span
+                            ><img
+                              :src="book.coverUrl"
+                              :alt="book.title"
+                              class="book-cover"
+                              @error="handleImgError"
+                              loading="lazy"
+                            />
                             <h3>{{ book.title }}</h3>
                             <p>{{ book.author }}</p>
                           </div>
                         </div>
                       </div>
-                      <div v-else-if="creationsTabActive === 'growth'" key="growth">
+                      <div
+                        v-else-if="creationsTabActive === 'growth'"
+                        key="growth"
+                      >
                         <div class="growth-grid">
                           <div class="growth-card">
                             <h3>
                               <i class="ph-fill ph-calendar-blank"></i> Time
                             </h3>
                             <div class="timeline">
-                              <div class="timeline-item" v-for="item in timeline" :key="item.date">
+                              <div
+                                class="timeline-item"
+                                v-for="item in timeline"
+                                :key="item.date"
+                              >
                                 <div class="timeline-date">{{ item.date }}</div>
                                 <p class="timeline-desc">{{ item.event }}</p>
                               </div>
@@ -3136,10 +3610,18 @@
                                 Target progress
                               </h3>
                               <div class="target-list">
-                                <div v-for="(target, index) in targets" :key="target.name" class="target-item">
+                                <div
+                                  v-for="(target, index) in targets"
+                                  :key="target.name"
+                                  class="target-item"
+                                >
                                   <div class="target-info">
-                                    <span class="target-name">{{ target.name }}</span><span class="target-progress-text">{{ animatedTargetValues[index] || 0 }} /
-                                      {{ target.total }}</span>
+                                    <span class="target-name"
+                                      >{{ target.name }}</span
+                                    ><span class="target-progress-text"
+                                      >{{ animatedTargetValues[index] || 0 }} /
+                                      {{ target.total }}</span
+                                    >
                                   </div>
                                   <div class="progress-bar-container">
                                     <div class="progress-bar"></div>
@@ -3152,15 +3634,27 @@
                                 <i class="ph-fill ph-chart-line"></i> Knowledge Dynamics
                               </h3>
                               <div class="activity-feed">
-                                <div v-if="activityStream &amp;&amp; activityStream.length === 0 &amp;&amp; !github.isLoading">
+                                <div
+                                  v-if="activityStream && activityStream.length === 0 && !github.isLoading"
+                                >
                                   No updates yet
                                 </div>
-                                <div v-for="(item, index) in activityStream" :key="index" class="activity-item">
+                                <div
+                                  v-for="(item, index) in activityStream"
+                                  :key="index"
+                                  class="activity-item"
+                                >
                                   <div class="activity-icon">
-                                    <i class="ph-fill" :class="item.type === 'github' ? 'ph-git-commit' : 'ph-book-open'"></i>
+                                    <i
+                                      class="ph-fill"
+                                      :class="item.type === 'github' ? 'ph-git-commit' : 'ph-book-open'"
+                                    ></i>
                                   </div>
                                   <div class="activity-content">
-                                    <p class="activity-text" v-html="item.content"></p>
+                                    <p
+                                      class="activity-text"
+                                      v-html="item.content"
+                                    ></p>
                                     <p class="activity-date">{{ item.date }}</p>
                                   </div>
                                 </div>
@@ -3173,25 +3667,49 @@
                         <div class="blog-panel-content">
                           <div class="blog-sidebar">
                             <div class="blog-category-filter">
-                              <button v-for="category in blogCategories" :key="category" @click="activeCategory = category" :class="{ active: activeCategory === category }">
+                              <button
+                                v-for="category in blogCategories"
+                                :key="category"
+                                @click="activeCategory = category"
+                                :class="{ active: activeCategory === category }"
+                              >
                                 {{ category }}
                               </button>
                             </div>
                             <div class="blog-post-list-container">
-                              <transition-group name="list-fade" tag="div"><div v-for="post in filteredBlogPosts" :key="post.id" @click="activePostId = post.id" class="blog-post-item" :class="{ active: post.id === activePostId }" tabindex="0" @keydown.enter="activePostId = post.id">
+                              <transition-group name="list-fade" tag="div"
+                                ><div
+                                  v-for="post in filteredBlogPosts"
+                                  :key="post.id"
+                                  @click="activePostId = post.id"
+                                  class="blog-post-item"
+                                  :class="{ active: post.id === activePostId }"
+                                  tabindex="0"
+                                  @keydown.enter="activePostId = post.id"
+                                >
                                   <h4>{{ post.title }}</h4>
                                   <p>{{ post.date }}</p>
-                                </div></transition-group>
+                                </div></transition-group
+                              >
                             </div>
                           </div>
                           <div class="blog-main">
-                            <transition name="post-fade" mode="out-in"><div v-if="activePost" class="blog-post-content" :key="activePost.id">
+                            <transition name="post-fade" mode="out-in"
+                              ><div
+                                v-if="activePost"
+                                class="blog-post-content"
+                                :key="activePost.id"
+                              >
                                 <h2>{{ activePost.title }}</h2>
                                 <p class="blog-post-meta">
                                   Published on {{activePost.date}} | Category: {{
                                   activePost.category }}
                                 </p>
-                                <div class="blog-post-body" v-html="renderMarkdown(activePost.content)"></div></div></transition>
+                                <div
+                                  class="blog-post-body"
+                                  v-html="renderMarkdown(activePost.content)"
+                                ></div></div
+                            ></transition>
                           </div>
                         </div>
                       </div>
@@ -3199,82 +3717,204 @@
                   </div>
                 </article>
               </div>
-              <div id="interests-panel" class="journey-panel" v-if="activeJourneyPanel === 'interests'">
-                <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
-                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
+              <div
+                id="interests-panel"
+                class="journey-panel"
+                v-if="activeJourneyPanel === 'interests'"
+              >
+                <article
+                  class="content-card glass-effect"
+                  ref="activePanelRef"
+                  @click="handleAppClick"
+                >
+                  <button
+                    @click="closeJourneyPanel"
+                    class="close-panel-btn"
+                    aria-label="Close Panel"
+                    title="Close"
+                  >
                     <i class="ph ph-x"></i>
                   </button>
                   <h2>Interest</h2>
                   <div class="interest-pills-container">
-                    <button v-for="interest in interests" :key="interest.id" class="interest-pill" :class="{ 'is-active': openInterestId === interest.id }" @click="openInterestId = interest.id">
-                      <i :class="interest.icon"></i><span>{{ interest.title }}</span>
+                    <button
+                      v-for="interest in interests"
+                      :key="interest.id"
+                      class="interest-pill"
+                      :class="{ 'is-active': openInterestId === interest.id }"
+                      @click="openInterestId = interest.id"
+                    >
+                      <i :class="interest.icon"></i
+                      ><span>{{ interest.title }}</span>
                     </button>
                   </div>
-                  <transition name="content-fade" mode="out-in"><div v-if="activeInterest" :key="activeInterest.id" class="interest-details-container">
+                  <transition name="content-fade" mode="out-in"
+                    ><div
+                      v-if="activeInterest"
+                      :key="activeInterest.id"
+                      class="interest-details-container"
+                    >
                       <div class="interest-details-content">
-                        <div v-if="activeInterest.hasVideo &amp;&amp; activeInterest.videoUrl" class="video-container">
-                          <iframe :src="activeInterest.videoUrl" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                        <div
+                          v-if="activeInterest.hasVideo && activeInterest.videoUrl"
+                          class="video-container"
+                        >
+                          <iframe
+                            :src="activeInterest.videoUrl"
+                            scrolling="no"
+                            border="0"
+                            frameborder="no"
+                            framespacing="0"
+                            allowfullscreen="true"
+                          ></iframe>
                         </div>
-                        <div class="interest-markdown-content" v-html="interestMarkdownContent"></div>
-                      </div></div></transition>
+                        <div
+                          class="interest-markdown-content"
+                          v-html="interestMarkdownContent"
+                        ></div>
+                      </div></div
+                  ></transition>
                 </article>
               </div>
             </div>
           </transition>
         </section>
       </main>
-      <div class="fab-container glass-effect" :class="{ 'expanded': guestbook.isExpanded }">
+      <div
+        class="fab-container glass-effect"
+        :class="{ 'expanded': guestbook.isExpanded }"
+      >
         <form @submit.prevent="submitGuestbookMessage" class="fab-form">
           <h3 class="fab-form-title">Send danmakus</h3>
-          <p class="modal-status-message" style="
+          <p
+            class="modal-status-message"
+            style="
               text-align: center;
               min-height: 1.2em;
               font-size: 0.9em;
               margin-bottom: 1rem;
               font-weight: 500;
-            " :class="guestbook.status.type" aria-live="polite">
+            "
+            :class="guestbook.status.type"
+            aria-live="polite"
+          >
             {{ guestbook.status.message }}
           </p>
           <div class="form-group">
-            <input type="text" id="guestName" v-model="guestbook.newName" required="" maxlength="20" placeholder="What should we call you?">
+            <input
+              type="text"
+              id="guestName"
+              v-model="guestbook.newName"
+              required
+              maxlength="20"
+              placeholder="What should we call you?"
+            />
           </div>
           <div class="form-group">
-            <textarea id="guestMessage" v-model="guestbook.newMessage" required="" maxlength="100" placeholder="Say something..."></textarea>
+            <textarea
+              id="guestMessage"
+              v-model="guestbook.newMessage"
+              required
+              maxlength="100"
+              placeholder="Say something..."
+            ></textarea>
           </div>
-          <button type="submit" class="form-submit-button" :disabled="guestbook.isSubmitting">
-            <i v-if="guestbook.isSubmitting" class="ph ph-spinner-gap"></i><span>{{ guestbook.isSubmitting ? 'Launch in progress...' : 'Launch danmakus'}}</span>
+          <button
+            type="submit"
+            class="form-submit-button"
+            :disabled="guestbook.isSubmitting"
+          >
+            <i v-if="guestbook.isSubmitting" class="ph ph-spinner-gap"></i
+            ><span
+              >{{ guestbook.isSubmitting ? 'Launch in progress...' : 'Launch danmakus'}}</span
+            >
           </button>
         </form>
-        <button @click="toggleGuestbookExpanded" class="fab-toggle" aria-label="Leave message">
-          <i class="ph-fill" :class="guestbook.isExpanded ? 'ph-x' : 'ph-chat-centered-dots'"></i>
+        <button
+          @click="toggleGuestbookExpanded"
+          class="fab-toggle"
+          aria-label="Leave message"
+        >
+          <i
+            class="ph-fill"
+            :class="guestbook.isExpanded ? 'ph-x' : 'ph-chat-centered-dots'"
+          ></i>
         </button>
       </div>
-      <footer class="footer-section glass-effect anim-fade-in-up" id="footer" data-section="footer">
+      <footer
+        class="footer-section glass-effect anim-fade-in-up"
+        id="footer"
+        data-section="footer"
+      >
         <h4 class="footer-title">Weathercock</h4>
         <p class="footer-subtitle">More</p>
         <div class="icon-links-bar">
-          <a v-for="link in footerIconLinks" :key="link.text" :href="link.url" class="icon-link"><span v-html="link.icon"></span><span>{{ link.text }}</span></a>
+          <a
+            v-for="link in footerIconLinks"
+            :key="link.text"
+            :href="link.url"
+            class="icon-link"
+            ><span v-html="link.icon"></span><span>{{ link.text }}</span></a
+          >
         </div>
         <div class="info-links">
-          <a href="https://www.youtube.com/watch?v=fzQ6gRAEoy0">And it's a long way forward...</a>
+          <a href="https://www.youtube.com/watch?v=fzQ6gRAEoy0"
+            >And it's a long way forward...</a
+          >
         </div>
         <div class="copyright-info">
           <p>
-            Copyright©{{ copyrightYear }} RinCynar<span class="site-info-item" v-if="siteUptime">| The site has been running for {{ siteUptime }}</span><span class="site-info-item" v-if="icp">|
-              <a style="
+            Copyright&copy;{{ copyrightYear }} RinCynar<span
+              class="site-info-item"
+              v-if="siteUptime"
+              >| The site has been running for {{ siteUptime }}</span
+            ><span class="site-info-item" v-if="icp"
+              >|
+              <a
+                style="
                   color: var(--accent-color);
                   font-weight: 500;
                   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
                   text-decoration: none;
-                " href="https://beian.miit.gov.cn/" target="_blank">{{ icp }}</a></span>
+                "
+                href="https://beian.miit.gov.cn/"
+                target="_blank"
+                >{{ icp }}</a
+              ></span
+            >
           </p>
           <div class="theme-switcher">
-            <button @click="setTheme('dark')" :class="{ active: currentTheme === 'dark' }" aria-label="Switch to Dark Mode" title="Dark Mode">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-              </svg></button><button @click="setTheme('light')" :class="{ active: currentTheme === 'light' }" aria-label="Switch to light mode" title="Light mode">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z" clip-rule="evenodd"></path>
+            <button
+              @click="setTheme('dark')"
+              :class="{ active: currentTheme === 'dark' }"
+              aria-label="Switch to Dark Mode"
+              title="Dark Mode"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg></button
+            ><button
+              @click="setTheme('light')"
+              :class="{ active: currentTheme === 'light' }"
+              aria-label="Switch to light mode"
+              title="Light mode"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z"
+                  clip-rule="evenodd"
+                ></path>
               </svg>
             </button>
           </div>
@@ -3282,13 +3922,34 @@
       </footer>
     </div>
 
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Fvue%2F3.2.47%2Fvue.global.prod.js" defer=""></script>
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Fmarked%2F4.3.0%2Fmarked.min.js" defer=""></script>
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2F%40phosphor-icons%2Fweb" defer=""></script>
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Faplayer%2F1.10.1%2FAPlayer.min.js" defer=""></script>
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Ffetch-jsonp%2F1.3.0%2Ffetch-jsonp.min.js" defer=""></script>
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fkatex.min.js" defer=""></script>
-    <script src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fcontrib%2Fauto-render.min.js" defer=""></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Fvue%2F3.2.47%2Fvue.global.prod.js"
+      defer
+    ></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Fmarked%2F4.3.0%2Fmarked.min.js"
+      defer
+    ></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2F%40phosphor-icons%2Fweb"
+      defer
+    ></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Faplayer%2F1.10.1%2FAPlayer.min.js"
+      defer
+    ></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2Ffetch-jsonp%2F1.3.0%2Ffetch-jsonp.min.js"
+      defer
+    ></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fkatex.min.js"
+      defer
+    ></script>
+    <script
+      src="https://source.xvyin.com/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fcontrib%2Fauto-render.min.js"
+      defer
+    ></script>
 
     <script>
       (function () {
@@ -4013,7 +4674,7 @@
               guestbook.value.isReady = true;
             } catch (err) {
               console.error("Failed to retrieve danmakus:", err);
-              guestbook.value.error = err.message || "Unable to load danmakus。";
+              guestbook.value.error = err.message || "Unable to load danmakus.";
             }
           };
           const submitMessage = async () => {
@@ -5024,6 +5685,5 @@
         }).mount("#app");
       });
     </script>
-  
-
-</body></html>
+  </body>
+</html>
