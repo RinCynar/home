@@ -2,15 +2,15 @@
   {
     "id": "reading",
     "icon": "ph-fill ph-book",
-    "title": "收藏",
+    "title": "Collection",
     "mdFilePath": "./content/interests/collection.md",
     "hasVideo": true,
-    "videoUrl": "https://player.bilibili.com/player.html?bvid=BV1Kj411g7Lu&page=1&as_wide=1&high_quality=1&danmaku=0"
+    "videoUrl": "https://player.bilibili.com/player.html?bvid=BV1qbtLzdEAk"
   },
   {
     "id": "fitness",
     "icon": "ph-fill ph-barbell",
-    "title": "摆烂",
+    "title": "Slackoff",
     "mdFilePath": "./content/interests/slackoff.md",
     "hasVideo": false,
     "videoUrl": ""
@@ -18,7 +18,7 @@
   {
     "id": "photography",
     "icon": "ph-fill ph-camera",
-    "title": "编曲",
+    "title": "Arrangement",
     "mdFilePath": "./content/interests/arrangement.md",
     "hasVideo": false,
     "videoUrl": ""
@@ -26,7 +26,7 @@
   {
     "id": "blender",
     "icon": "ph-fill ph-cube",
-    "title": "二游",
+    "title": "Animegames",
     "mdFilePath": "./content/interests/animegames.md",
     "hasVideo": false,
     "videoUrl": ""
@@ -34,7 +34,7 @@
   {
     "id": "frontend",
     "icon": "ph-fill ph-code",
-    "title": "发疯",
+    "title": "Insanity",
     "mdFilePath": "./content/interests/insanity.md",
     "hasVideo": false,
     "videoUrl": ""
