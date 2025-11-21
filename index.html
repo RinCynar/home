@@ -4823,10 +4823,9 @@
               await data.loadAllData();
 
               presetSonglists.value = [
-                { id: "9206816111", name: "净尘拂人心" },
-                { id: "9209348306", name: "入尘晓烟火" },
+                { id: "7093288886", name: "My Favorate" },
                 ...data.localPlaylistsManifest.value,
-                { id: "local_folder_picker", name: "📂 从本地文件夹播放" },
+                { id: "local_folder_picker", name: "📂 Play from local folder" },
               ];
               if (presetSonglists.value.length > 0) {
                 currentSongId.value = presetSonglists.value[0].id;

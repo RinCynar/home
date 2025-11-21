@@ -1,9 +1,9 @@
 {
   "timeline": [
-    { "date": "2021-10-02", "event": "她自躯体中苏醒" }
+    { "date": "2021-10-02", "event": "*She* awoke from her body." }
   ],
   "targets": [
-    { "name": "暂无", "current": 90, "total": 100 }
+    { "name": "None available", "current": 90, "total": 100 }
   ]
 
 }
