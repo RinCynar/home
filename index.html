@@ -3527,12 +3527,12 @@
             const apiUrl = `${config.music.api}?server=${config.music.server}&type=${config.music.type}&id=${songId}`;
             const response = await fetch(apiUrl);
             if (!response.ok)
-              throw new Error(`音乐API请求失败: ${response.status}`);
+              throw new Error(`Music API request failed: ${response.status}`);
             const data = await response.json();
             if (data.error) throw new Error(data.error);
             if (!Array.isArray(data) || data.length === 0) {
-              console.error("API响应无效或播放列表为空:", data);
-              throw new Error("播放列表为空或加载失败。");
+              console.error("Invalid API response or empty playlist:", data);
+              throw new Error("The playlist is empty or failed to load.");
             }
             return data;
           },
