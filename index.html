@@ -4823,8 +4823,8 @@
               await data.loadAllData();
 
               presetSonglists.value = [
+                { id: "17466082694", name: "MyFavorate" },
                 ...data.localPlaylistsManifest.value,
-                { id: "7093288886", name: "MyFavorate" },
                 { id: "local_folder_picker", name: "📂 Play from local folder" },
               ];
               if (presetSonglists.value.length > 0) {
