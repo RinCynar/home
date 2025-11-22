@@ -3455,7 +3455,6 @@
             growth: "./content/growth.json",
             bookshelf: "./content/bookshelf/bookshelf.json",
             footerLinks: "./content/footer-links.json",
-            localPlaylistsManifest: "./content/music/local_playlists.json",
           },
         };
 
@@ -3917,7 +3916,6 @@
             bookshelf = ref([]),
             blogPosts = ref([]),
             footerIconLinks = ref([]),
-            localPlaylistsManifest = ref([]);
           const loadResumeContent = async (path) => {
             if (!path) return;
             const resumeContent = await dataLoaderService.fetchJSON(path);
@@ -3942,9 +3940,6 @@
               dataLoaderService.fetchJSON(config.contentPaths.bookshelf),
               dataLoaderService.fetchJSON(config.contentPaths.blogManifest),
               dataLoaderService.fetchJSON(config.contentPaths.footerLinks),
-              dataLoaderService.fetchJSON(
-                config.contentPaths.localPlaylistsManifest
-              ),
             ]);
             aboutContent.value = utils.renderMarkdown(aboutMd || "");
             if (resumeManifest && resumeManifest.length > 0) {
@@ -3962,7 +3957,6 @@
             bookshelf.value = books || [];
             blogPosts.value = blogManifest || [];
             footerIconLinks.value = footerLinks || [];
-            localPlaylistsManifest.value = localManifest || [];
           };
           return {
             aboutContent,
@@ -3976,7 +3970,6 @@
             bookshelf,
             blogPosts,
             footerIconLinks,
-            localPlaylistsManifest,
             loadedLocalPlaylists,
             loadAllData,
           };
@@ -4824,7 +4817,6 @@
 
               presetSonglists.value = [
                 { id: "17466082694", name: "Default" },
-                ...data.localPlaylistsManifest.value,
                 { id: "local_folder_picker", name: "📂 Play from local folder" },
               ];
               if (presetSonglists.value.length > 0) {
