@@ -3291,13 +3291,6 @@
     <script src="https://source.rincynar.top/?target=https%3A%2F%2Fcdn.bootcdn.net%2Fajax%2Flibs%2FKaTeX%2F0.16.9%2Fcontrib%2Fauto-render.min.js" defer=""></script>
 
     <script>
-      (function () {
-        const isLightTheme =
-          new Date().getHours() >= 6 && new Date().getHours() < 18;
-        if (isLightTheme) {
-          document.documentElement.classList.add("light-theme");
-        }
-      })();
 
       document.addEventListener("DOMContentLoaded", () => {
         (function () {
@@ -3563,35 +3556,32 @@
 
         const useTheme = () => {
           const currentTheme = ref("dark");
-          let themeCheckInterval = null;
-          const autoSetThemeByTime = () => {
-            const newTheme =
-              new Date().getHours() >= 6 && new Date().getHours() < 18
-                ? "light"
-                : "dark";
-            if (newTheme !== currentTheme.value) {
-              currentTheme.value = newTheme;
-              document.documentElement.classList.toggle(
-                "light-theme",
-                newTheme === "light"
-              );
+          const setTheme = (theme, persist = true) => {
+            currentTheme.value = theme;
+            document.documentElement.classList.toggle("light-theme", theme === "light");
+            if (persist) {
+              try {
+                localStorage.setItem("theme", theme);
+              } catch (e) {
+                /* ignore storage errors */
+              }
             }
           };
-          const setTheme = (theme) => {
-            currentTheme.value = theme;
-            document.documentElement.classList.toggle(
-              "light-theme",
-              theme === "light"
-            );
-          };
+
           const initTheme = () => {
-            autoSetThemeByTime();
-            if (themeCheckInterval) clearInterval(themeCheckInterval);
-            themeCheckInterval = setInterval(autoSetThemeByTime, 60000);
+            let saved = null;
+            try {
+              saved = localStorage.getItem("theme");
+            } catch (e) {
+              saved = null;
+            }
+            if (saved === "light" || saved === "dark") {
+              setTheme(saved, true);
+            } else {
+              setTheme("dark", false);
+            }
           };
-          onUnmounted(() => {
-            if (themeCheckInterval) clearInterval(themeCheckInterval);
-          });
+
           return { currentTheme, setTheme, initTheme };
         };
         const useScroll = () => {

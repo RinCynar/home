@@ -632,7 +632,7 @@
                 docElement.classList.add('light-theme');
             } else {
                 docElement.classList.remove('light-theme');
-             }
+            }
         }
 
         function toggleTheme() {
@@ -644,13 +644,19 @@
 
         themeToggleBtn.addEventListener('click', toggleTheme);
 
-        // 初始化主题，默认使用深色
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) {
-            applyTheme(savedTheme);  // 如果之前有保存的主题，应用它
-        } else {
-            applyTheme('dark');  // 默认使用深色主题
+        // Initialize theme: prefer saved user choice; otherwise default to dark
+        let savedTheme = null;
+        try {
+            savedTheme = localStorage.getItem('theme');
+        } catch (e) {
+            savedTheme = null;
         }
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme('dark');
+        }
+
 
         // --- 粒子背景 ---
         document.addEventListener("DOMContentLoaded", () => {
