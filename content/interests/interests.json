@@ -30,13 +30,5 @@
     "mdFilePath": "./content/interests/animegames.md",
     "hasVideo": false,
     "videoUrl": ""
-  },
-  {
-    "id": "frontend",
-    "icon": "ph-fill ph-code",
-    "title": "Insanity",
-    "mdFilePath": "./content/interests/insanity.md",
-    "hasVideo": false,
-    "videoUrl": ""
   }
 ]
