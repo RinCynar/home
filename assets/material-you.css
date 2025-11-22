@@ -70,7 +70,7 @@ p,li,div{font-size:1rem;line-height:1.6;color:var(--md-sys-on-surface)}
   left:16px;
   right:16px;
   transform:none;
-  z-index:10000;
+  z-index:100;
   max-width:calc(100% - 32px);
   margin:0 auto;
 }
@@ -118,4 +118,46 @@ p,li,div{font-size:1rem;line-height:1.6;color:var(--md-sys-on-surface)}
 
 /* Misc helpers to ensure good contrast on cards */
 .repo-card p, .book-card p, .blog-post-body p{color:var(--text-color-darker)}
+
+/* Mobile-specific fixes: ensure hub nodes/cards are not skewed or overlapped */
+@media (max-width: 600px) {
+  /* Reset any transforms and ensure hub nodes are centered */
+  .hub-node {
+    transform: none !important;
+    margin: 0 auto 1rem !important;
+    padding: 1.25rem !important;
+    border-radius: 14px !important;
+    text-align: center !important;
+    box-shadow: none !important;
+  }
+  .hub-node h3 {
+    font-size: 1.5rem !important;
+    line-height: 1.25 !important;
+    margin: 0.5rem 0 !important;
+  }
+  .hub-node p {
+    font-size: 0.95rem !important;
+    color: var(--md-sys-on-surface) !important;
+    margin: 0.25rem 0 !important;
+  }
+
+  /* Sidebar vertical text should become horizontal on small screens */
+  .sidebar-text {
+    writing-mode: horizontal-tb !important;
+    transform: none !important;
+    font-size: 0.95rem !important;
+    display: block !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Ensure header does not overlap content and container padding is reasonable */
+  .main-header.mui-appbar{
+    top:12px !important;
+    left:8px !important;
+    right:8px !important;
+    max-width:calc(100% - 16px) !important;
+  }
+  .initial-hero-section.mui-card{padding-top:calc(2.5rem + 64px) !important}
+  .mui-container{padding-left:12px !important;padding-right:12px !important}
+}
 
