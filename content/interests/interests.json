@@ -17,7 +17,7 @@
   },
   {
     "id": "photography",
-    "icon": "ph-fill ph-music",
+    "icon": "ph-fill ph-headphones",
     "title": "Arrangement",
     "mdFilePath": "./content/interests/arrangement.md",
     "hasVideo": false,
