@@ -1,7 +1,7 @@
 [
   {
     "id": "info",
-    "label": "**",
+    "label": "Infomation",
     "location": "./content/resume/info.json"
   }
 ]
