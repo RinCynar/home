@@ -2736,7 +2736,7 @@
           <transition name="panel-fade" mode="out-in">
             <div class="journey-hub" v-if="!activeJourneyPanel" key="journey-hub">
               <div class="hub-intro">
-                <h2>About</h2>
+                <h2>And</h2>
                 <blockquote>
                   「
                   <strong>And it's a long way forward...♭</strong>
@@ -3078,7 +3078,7 @@
                   <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
                     <i class="ph ph-x"></i>
                   </button>
-                  <h2>Interest</h2>
+                  <h2>About</h2>
                   <div class="interest-pills-container">
                     <button v-for="interest in interests" :key="interest.id" class="interest-pill" :class="{ 'is-active': openInterestId === interest.id }" @click="openInterestId = interest.id">
                       <i :class="interest.icon"></i><span>{{ interest.title }}</span>

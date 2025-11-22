@@ -9,7 +9,7 @@
   },
   {
     "id": "fitness",
-    "icon": "ph-fill ph-barbell",
+    "icon": "ph-fill ph-bed",
     "title": "Slackoff",
     "mdFilePath": "./content/interests/slackoff.md",
     "hasVideo": false,
@@ -17,7 +17,7 @@
   },
   {
     "id": "photography",
-    "icon": "ph-fill ph-camera",
+    "icon": "ph-fill ph-music",
     "title": "Arrangement",
     "mdFilePath": "./content/interests/arrangement.md",
     "hasVideo": false,
@@ -25,7 +25,7 @@
   },
   {
     "id": "blender",
-    "icon": "ph-fill ph-cube",
+    "icon": "ph-fill ph-game-controller",
     "title": "Animegames",
     "mdFilePath": "./content/interests/animegames.md",
     "hasVideo": false,
