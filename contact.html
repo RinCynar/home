@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -550,17 +550,17 @@
     <canvas id="particle-canvas"></canvas>
 
     <main class="contact-container glass-effect">
-        <button class="theme-toggle" id="theme-toggle-btn" title="切换主题">
+        <button class="theme-toggle" id="theme-toggle-btn" title="Toggle theme">
             <i class="ph ph-sun"></i>
             <i class="ph ph-moon"></i>
         </button>
-        <a href="./index.html" class="back-link" title="返回主页">
+        <a href="./index.html" class="back-link" title="Back to Home">
             <i class="ph ph-house"></i>
         </a>
         <h1>Contact me</h1>
 
         <form id="contact-form" action="https://email.rincynar.top" method="POST" novalidate="">
-            <!-- !! 重要: 将上面的 action URL 替换成你自己的 Worker URL !! -->
+            <!-- !! IMPORTANT: Replace the action URL above with your own Worker URL !! -->
             <div class="form-group">
                 <label for="name">Your Name</label>
                 <input type="text" id="name" name="name" required="" autocomplete="name">
@@ -584,7 +584,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="contact_method" id="contact-method-hidden" value="email">
-                    <input type="email" id="contact-value" name="contact_value" required="" placeholder="请输入你的邮箱地址"
+                    <input type="email" id="contact-value" name="contact_value" required="" placeholder="Please enter your email address"
                         autocomplete="email">
                 </div>
                 <div class="error-message">Invalid contact format</div>
@@ -649,7 +649,7 @@
         if (savedTheme) {
             applyTheme(savedTheme);
         } else {
-            const isAutoLight = new Date().getHours() >= 6 && new Date().getHours() < 18;
+                const isAutoLight = new Date().getHours() >= 6 && new Date().getHours() < 18;
             applyTheme(isAutoLight ? 'light' : 'dark');
         }
 
@@ -854,22 +854,22 @@
         function updateContactInput(method, preserveValue = false) {
             switch (method) {
                 case 'email':
-                    contactValueInput.placeholder = '请输入你的邮箱地址';
+                    contactValueInput.placeholder = 'Please enter your email address';
                     contactValueInput.type = 'email';
                     contactValueInput.autocomplete = 'email';
                     break;
                 case 'qq':
-                    contactValueInput.placeholder = '请输入你的QQ号码';
+                    contactValueInput.placeholder = 'Please enter your QQ number';
                     contactValueInput.type = 'text';
                     contactValueInput.autocomplete = 'off';
                     break;
                 case 'wechat':
-                    contactValueInput.placeholder = '请输入你的微信号';
+                    contactValueInput.placeholder = 'Please enter your WeChat ID';
                     contactValueInput.type = 'text';
                     contactValueInput.autocomplete = 'off';
                     break;
                 case 'phone':
-                    contactValueInput.placeholder = '请输入你的手机号码';
+                    contactValueInput.placeholder = 'Please enter your phone number';
                     contactValueInput.type = 'tel';
                     contactValueInput.autocomplete = 'tel';
                     break;
@@ -881,22 +881,22 @@
         const statusDiv = document.getElementById('form-status');
         const charCounter = document.querySelector('.char-counter');
 
-        const validationRules = {
+            const validationRules = {
             email: {
                 regex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: '请输入有效的邮箱地址'
+                message: 'Please enter a valid email address'
             },
             qq: {
                 regex: /^[1-9][0-9]{4,11}$/,
-                message: '请输入5到12位的QQ号码'
+                message: 'Please enter a QQ number with 5 to 12 digits'
             },
             wechat: {
                 regex: /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/,
-                message: '微信号格式不正确'
+                message: 'Invalid WeChat ID format'
             },
             phone: {
                 regex: /^1[3-9]\d{9}$/,
-                message: '请输入11位有效手机号码'
+                message: 'Please enter an 11-digit valid phone number'
             }
         };
 
@@ -907,11 +907,11 @@
             let message = '';
             const value = input.value;
 
-            if (input.required && value.trim() === '') {
+                if (input.required && value.trim() === '') {
                 isValid = false;
-                // 从HTML中获取默认的空值错误信息
+                // Get default empty-field error message from HTML
                 const defaultEmptyMsg = formGroup.querySelector('.textarea-footer .error-message') || formGroup.querySelector('.error-message');
-                message = defaultEmptyMsg ? defaultEmptyMsg.textContent : '此字段不能为空';
+                message = defaultEmptyMsg ? defaultEmptyMsg.textContent : 'This field cannot be empty';
             } else if (input.id === 'contact-value' && value.trim() !== '') {
                 const method = hiddenInput.value;
                 const rule = validationRules[method];
@@ -971,7 +971,7 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
                 const responseData = await response.json();
-                statusDiv.textContent = "消息发送成功，感谢联系！";
+                statusDiv.textContent = "Message sent successfully, thank you for contacting me!";
                 statusDiv.classList.add('success');
                 form.reset();
                 localStorage.removeItem(FORM_STATE_KEY); // 发送成功后清除状态
@@ -987,7 +987,7 @@
 
             } catch (error) {
                 console.error("Fetch Error:", error);
-                statusDiv.textContent = "网络似乎有问题，请检查后重试。";
+                statusDiv.textContent = "Network error, please check and try again.";
                 statusDiv.classList.add('error');
                 form.classList.add('shake');
             } finally {

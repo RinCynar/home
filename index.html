@@ -1495,7 +1495,7 @@
         border: 1px solid rgba(var(--accent-color-rgb), 0.3);
       }
       .pinned-repo-card::before {
-        content: "置顶";
+        content: "Pinned";
         position: absolute;
         top: 15px;
         right: -35px;
@@ -2680,7 +2680,7 @@
     <div id="app">
       <header class="main-header glass-effect" :class="{ 'is-expanded': isHeaderExpanded, 'is-visible': isHeaderVisible }">
         <img src="./content/icon/favicon.png" alt="Navigation avatar, click to log in" class="header-avatar" @click="toggleLoginModal">
-        <nav class="header-nav" aria-label="主导航">
+        <nav class="header-nav" aria-label="Main Navigation">
           <button v-for="link in visibleNavLinks" :key="link.id" @click="handleNavClick(link.id)" :class="{ active: activeSection === link.id }" :aria-current="activeSection === link.id ? 'page' : false">
             {{ link.text }}
           </button>
@@ -2722,7 +2722,7 @@
                 <div class="book-modal-details">
                   <h3 id="book-title">{{ selectedBook.title }}</h3>
                   <p class="author">{{ selectedBook.author }}</p>
-                  <div class="rating-stars" :aria-label="selectedBook.rating + ' 星评价'">
+                  <div class="rating-stars" :aria-label="selectedBook.rating + ' stars'">
                     <span v-for="n in 5" :key="n">{{ n &lt;= selectedBook.rating ? '★' : '☆' }}</span>
                   </div>
                   <p class="review">“{{ selectedBook.review }}”</p>
@@ -2743,7 +2743,7 @@
       <!-- 新增: 图片预览模态框 -->
       <transition name="modal-fade">
         <div class="image-modal-overlay" v-if="isImageModalVisible" @click="closeImageModal">
-          <button @click.stop="closeImageModal" class="close-image-modal-btn" aria-label="关闭图片预览">
+          <button @click.stop="closeImageModal" class="close-image-modal-btn" aria-label="Close Image Preview">
             ×
           </button>
           <div class="image-modal-content" @click.stop="">
@@ -2774,14 +2774,14 @@
             </p>
           </div>
           <div class="hero-bottom-content" :class="{ visible: showHeroButtons }">
-            <div class="hero-player-container">
+                  <div class="hero-player-container">
               <transition name="player-fade"><p v-if="player.error" class="error-message">
                   {{ player.error }}
                 </p>
-                <button v-else-if="!player.isInitialized &amp;&amp; !player.isLoading" @click="switchSonglist(currentSongId)" aria-label="播放音乐" class="play-button glass-effect">
-                  <i class="ph-fill ph-play"></i></button></transition><transition name="player-fade"><div v-if="player.isLoading" class="loading-spinner" aria-label="音乐加载中"></div></transition><transition name="player-fade"><div class="player-wrapper glass-effect" v-if="player.isInitialized">
+                <button v-else-if="!player.isInitialized &amp;&amp; !player.isLoading" @click="switchSonglist(currentSongId)" aria-label="Play Music" class="play-button glass-effect">
+                  <i class="ph-fill ph-play"></i></button></transition><transition name="player-fade"><div v-if="player.isLoading" class="loading-spinner" aria-label="Music loading"></div></transition><transition name="player-fade"><div class="player-wrapper glass-effect" v-if="player.isInitialized">
                   <div id="player" class="custom-player">
-                    <img :src="player.currentSong.cover" :alt="`${player.currentSong.name} 的封面`" class="custom-player-cover">
+                    <img :src="player.currentSong.cover" :alt="`${player.currentSong.name} cover`" class="custom-player-cover">
                     <div class="custom-player-info-wrapper">
                       <div class="custom-player-info">
                         <div class="custom-player-title">
@@ -2878,7 +2878,7 @@
             <div v-else="" key="journey-panels">
               <div id="resume-panel" class="journey-panel" v-if="activeJourneyPanel === 'resume'">
                 <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
-                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="关闭面板" title="关闭">
+                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
                     <i class="ph ph-x"></i>
                   </button>
 
@@ -2989,7 +2989,7 @@
               </div>
               <div id="creations-panel" class="journey-panel" v-if="activeJourneyPanel === 'creations'">
                 <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
-                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="关闭面板" title="关闭">
+                  <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
                     <i class="ph ph-x"></i>
                   </button>
                   <h2>Creation and Knowledge</h2>
@@ -3514,8 +3514,8 @@
             if (!response.ok) {
               const errorText = await response.text();
               throw new Error(
-                `获取 GitHub 数据失败 (${endpoint}): ${response.status} - ${errorText}`
-              );
+                  `Failed to fetch GitHub data (${endpoint}): ${response.status} - ${errorText}`
+                );
             }
 
             const data = await response.json();
@@ -3542,21 +3542,21 @@
           async fetchJSON(path) {
             try {
               const response = await fetch(path);
-              if (!response.ok) throw new Error(`无法加载 ${path}`);
+              if (!response.ok) throw new Error(`Failed to load ${path}`);
               return await response.json();
             } catch (error) {
-              console.error(`加载JSON文件失败: ${path}`, error);
+              console.error(`Failed to load JSON file: ${path}`, error);
               return null;
             }
           },
           async fetchMarkdown(path) {
             try {
               const response = await fetch(path);
-              if (!response.ok) throw new Error(`无法加载 ${path}`);
+              if (!response.ok) throw new Error(`Failed to load ${path}`);
               return await response.text();
             } catch (error) {
-              console.error(`加载Markdown文件失败: ${path}`, error);
-              return `### Content loading failed\nSorry, this section could not be loaded.: ${path}`;
+              console.error(`Failed to load markdown file: ${path}`, error);
+              return `### Content loading failed\nSorry, this section could not be loaded: ${path}`;
             }
           },
         };
@@ -3742,11 +3742,11 @@
               } else if (Array.isArray(playlistSource)) {
                 audioList = playlistSource;
               } else {
-                throw new Error("无效的播放列表源。");
+                throw new Error("Invalid playlist source.");
               }
               if (!Array.isArray(audioList) || audioList.length === 0) {
                 console.error("API响应无效或播放列表为空:", audioList);
-                throw new Error("播放列表为空或加载失败。");
+                throw new Error("Playlist is empty or failed to load.");
               }
               originalPlaylist.value = [...audioList];
               player.value.isShuffle = false;
@@ -4013,7 +4013,7 @@
               guestbook.value.isReady = true;
             } catch (err) {
               console.error("Failed to retrieve danmakus:", err);
-              guestbook.value.error = err.message || "Unable to load danmakus。";
+              guestbook.value.error = err.message || "Unable to load danmaku messages.";
             }
           };
           const submitMessage = async () => {
@@ -4177,7 +4177,7 @@
                           throwOnError: false,
                         });
                       } catch (e) {
-                        console.error("KaTeX渲染错误", e);
+                        console.error("KaTeX rendering error", e);
                       }
                   }
                 });
