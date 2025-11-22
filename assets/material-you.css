@@ -1,0 +1,93 @@
+:root{
+  /* Material You inspired tokens */
+  --md-sys-primary: #6750A4;
+  --md-sys-on-primary: #ffffff;
+  --md-sys-primary-container: #EADDFF;
+  --md-sys-on-primary-container: #21005D;
+  --md-sys-secondary: #625B71;
+  --md-sys-on-secondary: #ffffff;
+  --md-sys-bg: var(--body-bg-color, #121212);
+  --md-sys-surface: rgba(255,255,255,0.02);
+  --md-sys-on-surface: var(--text-color, #f0f0f0);
+  --md-sys-outline: rgba(255,255,255,0.08);
+  --md-sys-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  --accent-color: var(--md-sys-primary);
+  --accent-color-rgb: 103, 80, 164;
+}
+
+/* Typography
+   - Provide approachable scale and weights used by Material You
+*/
+html { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+h1{font-size:clamp(1.4rem,2.6vw,2.4rem);font-weight:700}
+h2{font-size:clamp(1.15rem,2.2vw,1.75rem);font-weight:700}
+h3{font-size:1.125rem;font-weight:600}
+p,li,div{font-size:1rem;line-height:1.6;color:var(--md-sys-on-surface)}
+
+/* App bar */
+.mui-appbar{
+  display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.04));box-shadow:var(--md-sys-shadow);backdrop-filter:blur(8px);
+}
+.mui-appbar .title{font-weight:700;color:var(--md-sys-on-primary)}
+
+/* Cards */
+.mui-card{background:var(--md-sys-surface);border-radius:16px;padding:16px;border:1px solid var(--md-sys-outline);box-shadow:0 6px 18px rgba(0,0,0,0.35)}
+.mui-card.flat{box-shadow:none;border:1px solid transparent}
+
+/* Buttons */
+.mui-button{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:none;cursor:pointer;font-weight:600}
+.mui-button.contained{background:var(--accent-color);color:var(--md-sys-on-primary);box-shadow:0 6px 16px rgba(var(--accent-color-rgb,103,80,164),0.18)}
+.mui-button.outlined{background:transparent;color:var(--md-sys-on-surface);border:1px solid var(--md-sys-outline)}
+.mui-fab{width:56px;height:56px;border-radius:999px;display:inline-grid;place-items:center;background:var(--accent-color);color:var(--md-sys-on-primary);box-shadow:0 12px 30px rgba(0,0,0,0.45);border:none}
+
+/* Utility helpers */
+.mui-container{max-width:1100px;margin:0 auto;padding:24px}
+.mui-row{display:flex;gap:16px;flex-wrap:wrap}
+.mui-column{flex:1 1 320px;min-width:220px}
+
+/* Bridge to existing .glass-effect to adopt Material You accents */
+.glass-effect{border-radius:16px;border:1px solid var(--md-sys-outline);background:linear-gradient(180deg,var(--md-sys-surface),rgba(255,255,255,0.01));}
+
+/* Accent utilities */
+.accent{color:var(--accent-color)}
+.bg-accent{background:linear-gradient(90deg,var(--accent-color),#3b82f6);color:white}
+
+/* Responsive tweaks */
+@media (max-width:720px){.mui-container{padding:16px}.mui-appbar{padding:10px}}
+
+/* Map common site elements to Material You tokens */
+.main-header.mui-appbar{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));padding:10px 16px;align-items:center}
+.main-header.mui-appbar .header-avatar{width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,0.08);object-fit:cover}
+.main-header.mui-appbar .title{font-size:1.05rem;color:var(--md-sys-on-surface);margin-left:8px}
+.header-nav{margin-left:auto;display:flex;gap:6px;align-items:center}
+.header-nav button{background:transparent;border:none;color:var(--md-sys-on-surface);padding:8px 12px;border-radius:12px;font-weight:600;cursor:pointer}
+.header-nav button.active, .header-nav button:hover{background:rgba(var(--accent-color-rgb),0.12);color:var(--md-sys-on-primary)}
+
+/* Hero adjustments */
+.initial-hero-section.mui-card{padding:3rem;border-radius:20px;text-align:center}
+.hero-text-container{font-weight:800;font-size:clamp(2rem,6vw,3.6rem);color:var(--md-sys-on-surface)}
+
+/* Cards and lists */
+.repo-card, .book-card, .mui-card{background:var(--md-sys-surface);border:1px solid var(--md-sys-outline);border-radius:16px;padding:16px;color:var(--md-sys-on-surface);transition:transform .22s ease,box-shadow .22s ease}
+.repo-card:hover, .book-card:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(0,0,0,0.35);border-color:rgba(var(--accent-color-rgb),0.25)}
+.repo-card h3, .book-card h3{color:var(--md-sys-on-surface);font-weight:700}
+
+/* Buttons */
+.mui-button.contained{background:var(--accent-color);color:var(--md-sys-on-primary);box-shadow:0 8px 24px rgba(var(--accent-color-rgb),0.18)}
+.mui-button.outlined{background:transparent;border:1px solid var(--md-sys-outline);color:var(--md-sys-on-surface)}
+.mui-button:focus{outline:2px solid rgba(var(--accent-color-rgb),0.18);outline-offset:2px}
+
+/* Adopt existing form submit button to accent tokens */
+.form-submit-button{background:var(--accent-color);color:var(--md-sys-on-primary);border-radius:12px;padding:10px 14px;border:none;box-shadow:0 8px 18px rgba(var(--accent-color-rgb),0.16)}
+.form-submit-button:hover{transform:translateY(-2px);opacity:0.98}
+
+/* Tabs */
+.tab-button{background:transparent;border:none;padding:10px 14px;border-radius:999px;color:var(--md-sys-on-surface);font-weight:600;cursor:pointer}
+.tab-button.active{background:linear-gradient(90deg,var(--accent-color),#3b82f6);color:var(--md-sys-on-primary)}
+
+/* Footer */
+.footer-section{background:transparent;padding:32px;border-top:1px solid var(--md-sys-outline)}
+
+/* Misc helpers to ensure good contrast on cards */
+.repo-card p, .book-card p, .blog-post-body p{color:var(--text-color-darker)}
+

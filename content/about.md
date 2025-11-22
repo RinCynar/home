@@ -14,7 +14,7 @@ Maybe I dabble in everything, but I’m not good at anything. But it doesn’t m
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 「<a style="color: var(--accent-color); font-weight: 500;text-shadow: 1px 1px 3px rgba(0,0,0,0.15);text-decoration: none;" href="https://www.youtube.com/watch?v=fzQ6gRAEoy0" target="_blank">And it's a long way forward...♭</a>」
 </p>
-<div class="rd-philosophy">
+<div class="mui-card rd-philosophy">
 <h3>Tags</h3>
 <p>
 INTP-T | Slackoff | Arrangement | Animegames | Insanity

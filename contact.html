@@ -544,16 +544,21 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="./assets/material-you.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap" rel="stylesheet">
+    <script src="./assets/theme.js" defer></script>
 </head>
 
 <body>
     <canvas id="particle-canvas"></canvas>
 
-    <main class="contact-container glass-effect">
+    <main class="contact-container glass-effect mui-container">
         <button class="theme-toggle" id="theme-toggle-btn" title="Toggle theme">
             <i class="ph ph-sun"></i>
             <i class="ph ph-moon"></i>
         </button>
+        <input id="accent-picker" type="color" title="Accent color" style="position:absolute;top:2rem;left:56px;width:36px;height:28px;border-radius:6px;border:none;padding:0;">
+        <button id="accent-reset" class="mui-button outlined" title="Reset accent" style="position:absolute;top:2rem;left:104px;padding:6px 8px;font-size:0.9rem;">Reset</button>
         <a href="./index.html" class="back-link" title="Back to Home">
             <i class="ph ph-house"></i>
         </a>
@@ -597,7 +602,7 @@
                     <span class="char-counter">0 / 500</span>
                 </div>
             </div>
-            <button type="submit" class="form-submit-button">
+            <button type="submit" class="form-submit-button mui-button contained">
                 <span class="button-text">Send</span>
                 <div class="loader"></div>
             </button>
@@ -1020,15 +1025,40 @@
         }
         form.addEventListener("submit", handleSubmit);
 
-        // --- 动态版权年份 ---
-        (function () {
-            const yearSpan = document.getElementById('copyright-year');
-            if (yearSpan) {
-                const currentYear = new Date().getFullYear();
-                yearSpan.textContent = `${currentYear}`;
-            }
-        }
-        ) ();
+                // Accent picker wiring (Material You control)
+                (function(){
+                    try{
+                        const picker = document.getElementById('accent-picker');
+                        const reset = document.getElementById('accent-reset');
+                        const defaultAccent = '#6750A4';
+                        const apply = (hex) => {
+                            if (window.MUITheme && typeof window.MUITheme.setAccent === 'function') {
+                                window.MUITheme.setAccent(hex);
+                            } else {
+                                document.documentElement.style.setProperty('--accent-color', hex);
+                            }
+                        };
+                        const init = () => {
+                            const saved = (window.MUITheme && window.MUITheme.getAccent && window.MUITheme.getAccent()) || null;
+                            const initial = saved || defaultAccent;
+                            if (picker) picker.value = initial;
+                            apply(initial);
+                        };
+                        if (picker) picker.addEventListener('input', (e)=> apply(e.target.value));
+                        if (reset) reset.addEventListener('click', (e)=>{ e.preventDefault(); if (picker) picker.value = defaultAccent; if (window.MUITheme && window.MUITheme.setAccent) window.MUITheme.setAccent(defaultAccent); else apply(defaultAccent);});
+                        init();
+                    }catch(e){ console.error('Accent picker init failed', e); }
+                })();
+
+                // --- 动态版权年份 ---
+                (function () {
+                        const yearSpan = document.getElementById('copyright-year');
+                        if (yearSpan) {
+                                const currentYear = new Date().getFullYear();
+                                yearSpan.textContent = `${currentYear}`;
+                        }
+                }
+                ) ();
     </script>
 
 

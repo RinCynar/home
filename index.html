@@ -2543,6 +2543,9 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="./assets/material-you.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap" rel="stylesheet">
+    <script src="./assets/theme.js" defer></script>
   </head>
 
   <body>
@@ -2556,8 +2559,9 @@
     </div>
     <canvas id="particle-canvas"></canvas>
     <div id="app">
-      <header class="main-header glass-effect" :class="{ 'is-expanded': isHeaderExpanded, 'is-visible': isHeaderVisible }">
+      <header class="main-header glass-effect mui-appbar" :class="{ 'is-expanded': isHeaderExpanded, 'is-visible': isHeaderVisible }">
         <img src="./content/icon/favicon.png" alt="Navigation avatar, click to log in" class="header-avatar" @click="toggleLoginModal">
+        <div class="title">RinCynar</div>
         <nav class="header-nav" aria-label="Main Navigation">
           <button v-for="link in visibleNavLinks" :key="link.id" @click="handleNavClick(link.id)" :class="{ active: activeSection === link.id }" :aria-current="activeSection === link.id ? 'page' : false">
             {{ link.text }}
@@ -2630,8 +2634,8 @@
         </div>
       </transition>
 
-      <main class="main-content">
-        <section class="initial-hero-section" id="initial-hero" data-section="hero" aria-labelledby="hero-main-title">
+      <main class="main-content mui-container">
+        <section class="initial-hero-section mui-card" id="initial-hero" data-section="hero" aria-labelledby="hero-main-title">
           <!-- Danmaku feature removed -->
           <div class="hero-text-container">
             <p>
@@ -2722,7 +2726,7 @@
           </div>
         </section>
         <section id="about" class="content-section" data-section="about">
-          <article class="about-us-card content-card glass-effect anim-fade-in-up">
+          <article class="about-us-card content-card mui-card glass-effect anim-fade-in-up">
             <div class="about-sidebar">
               <div class="sidebar-text">Until...</div>
               <div class="sidebar-line"></div>
@@ -2751,7 +2755,7 @@
             </div>
             <div v-else="" key="journey-panels">
               <div id="resume-panel" class="journey-panel" v-if="activeJourneyPanel === 'resume'">
-                <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
+                <article class="content-card mui-card glass-effect" ref="activePanelRef" @click="handleAppClick">
                   <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
                     <i class="ph ph-x"></i>
                   </button>
@@ -2862,7 +2866,7 @@
                 </article>
               </div>
               <div id="creations-panel" class="journey-panel" v-if="activeJourneyPanel === 'creations'">
-                <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
+                <article class="content-card mui-card glass-effect" ref="activePanelRef" @click="handleAppClick">
                   <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
                     <i class="ph ph-x"></i>
                   </button>
@@ -2970,7 +2974,7 @@
                             </div>
                           </div>
                         </div>
-                        <button v-if="github.canLoadMore" @click="loadMoreRepos" class="load-more-btn" :disabled="github.isLoadingMore">
+                        <button v-if="github.canLoadMore" @click="loadMoreRepos" class="load-more-btn mui-button outlined" :disabled="github.isLoadingMore">
                           <i v-if="github.isLoadingMore" class="ph ph-spinner-gap animate-spin"></i><span>{{ github.isLoadingMore ? 'Loading...' : 'Load More'
                             }}</span>
                         </button>
@@ -3074,7 +3078,7 @@
                 </article>
               </div>
               <div id="interests-panel" class="journey-panel" v-if="activeJourneyPanel === 'interests'">
-                <article class="content-card glass-effect" ref="activePanelRef" @click="handleAppClick">
+                <article class="content-card mui-card glass-effect" ref="activePanelRef" @click="handleAppClick">
                   <button @click="closeJourneyPanel" class="close-panel-btn" aria-label="Close Panel" title="Close">
                     <i class="ph ph-x"></i>
                   </button>
@@ -3111,7 +3115,7 @@
         <div class="info-links">
           <a href="https://www.youtube.com/watch?v=fzQ6gRAEoy0">And it's a long way forward...♭</a>
         </div>
-        <div class="copyright-info">
+          <div class="copyright-info">
           <p>
             Copyright©{{ copyrightYear }} RinCynar<span class="site-info-item" v-if="siteUptime">| The site has been running for {{ siteUptime }}</span><span class="site-info-item" v-if="icp">|
               <a style="
@@ -3130,6 +3134,8 @@
                 <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z" clip-rule="evenodd"></path>
               </svg>
             </button>
+            <input id="accent-picker" type="color" title="Accent color" style="margin-left:8px;border-radius:6px;border:none;width:36px;height:28px;padding:0;">
+            <button id="accent-reset" class="mui-button outlined" title="Reset accent" style="margin-left:6px;padding:6px 8px;font-size:0.9rem;">Reset</button>
           </div>
         </div>
       </footer>
@@ -4704,6 +4710,48 @@
         }).mount("#app");
       });
     </script>
+      <script>
+        // Accent picker wiring (Material You control)
+        document.addEventListener('DOMContentLoaded', () => {
+          try {
+            const picker = document.getElementById('accent-picker');
+            const reset = document.getElementById('accent-reset');
+            const defaultAccent = '#6750A4';
+            const apply = (hex) => {
+              if (window.MUITheme && typeof window.MUITheme.setAccent === 'function') {
+                window.MUITheme.setAccent(hex);
+              } else {
+                document.documentElement.style.setProperty('--accent-color', hex);
+              }
+            };
+
+            const init = () => {
+              const saved = (window.MUITheme && window.MUITheme.getAccent && window.MUITheme.getAccent()) || null;
+              const initial = saved || defaultAccent;
+              if (picker) picker.value = initial;
+              apply(initial);
+            };
+
+            if (picker) {
+              picker.addEventListener('input', (e) => {
+                apply(e.target.value);
+              });
+            }
+            if (reset) {
+              reset.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (picker) picker.value = defaultAccent;
+                if (window.MUITheme && window.MUITheme.setAccent) window.MUITheme.setAccent(defaultAccent);
+                else apply(defaultAccent);
+              });
+            }
+
+            init();
+          } catch (e) {
+            console.error('Accent picker init failed', e);
+          }
+        });
+      </script>
   
 
 </body></html>
