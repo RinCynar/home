@@ -119,6 +119,30 @@ p,li,div{font-size:1rem;line-height:1.6;color:var(--md-sys-on-surface)}
 /* Misc helpers to ensure good contrast on cards */
 .repo-card p, .book-card p, .blog-post-body p{color:var(--text-color-darker)}
 
+/* Strong mobile centering: make cards and grid items full-width and centered */
+@media (max-width: 720px) {
+  /* Ensure container doesn't create horizontal offset */
+  .mui-container{padding-left:12px !important;padding-right:12px !important;margin-left:auto;margin-right:auto}
+
+  /* Make all cards span the available width and be centered */
+  .mui-card, .content-card, .repo-card, .book-card, .about-us-card, .journey-hub article, .hub-node {
+    width: 100% !important;
+    max-width: 680px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Grid: center items and ensure single-column flow */
+  .hub-grid{justify-items: center !important;grid-template-columns: 1fr !important}
+
+  /* Make sure header and footer spacing don't push content horizontally */
+  header.main-header, .main-header.mui-appbar { left: 8px !important; right: 8px !important; }
+
+  /* Remove unexpected left offsets from any transformed parent */
+  .main-content, .main-content * { transform: none !important; left: auto !important; right: auto !important }
+}
+
 /* Mobile-specific fixes: ensure hub nodes/cards are not skewed or overlapped */
 @media (max-width: 600px) {
   /* Reset any transforms and ensure hub nodes are centered */
