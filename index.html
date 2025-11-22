@@ -315,31 +315,7 @@
         transition: padding-bottom 0.5s ease-in-out;
         overflow: hidden;
       }
-      .danmaku-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 70%;
-        pointer-events: none;
-        z-index: 2;
-      }
-      .danmaku-item {
-        position: absolute;
-        right: 0;
-        transform: translateX(100%);
-        white-space: nowrap;
-        font-size: clamp(1rem, 2vw, 1.5rem);
-        font-weight: 500;
-        padding: 5px 15px;
-        border-radius: 15px;
-        background-color: rgba(0, 0, 0, 0.2);
-        color: var(--text-color-white);
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        animation-name: danmaku-scroll;
-        animation-timing-function: linear;
-        animation-iteration-count: 1;
-      }
+      /* Danmaku styles removed */
       .hero-text-container,
       .hero-bottom-content {
         position: relative;
@@ -2391,14 +2367,7 @@
           opacity: 0;
         }
       }
-      @keyframes danmaku-scroll {
-        from {
-          transform: translateX(100vw);
-        }
-        to {
-          transform: translateX(-100vw);
-        }
-      }
+      /* Danmaku keyframes removed */
       @keyframes pulse-core {
         0%,
         100% {
@@ -2754,11 +2723,7 @@
 
       <main class="main-content">
         <section class="initial-hero-section" id="initial-hero" data-section="hero" aria-labelledby="hero-main-title">
-          <div class="danmaku-container" aria-hidden="true">
-            <transition-group name="danmaku-fade"><div v-for="item in activeDanmaku" :key="item.id" class="danmaku-item" :style="item.style">
-                {{ item.name }}: {{ item.message }}
-              </div></transition-group>
-          </div>
+          <!-- Danmaku feature removed -->
           <div class="hero-text-container">
             <p>
               {{ heroLine1 }}<span v-if="heroLine1Active" class="waving-hand">👋</span>
@@ -3225,7 +3190,7 @@
       </main>
       <div class="fab-container glass-effect" :class="{ 'expanded': guestbook.isExpanded }">
         <form @submit.prevent="submitGuestbookMessage" class="fab-form">
-          <h3 class="fab-form-title">Send danmakus</h3>
+          <h3 class="fab-form-title">Leave a message</h3>
           <p class="modal-status-message" style="
               text-align: center;
               min-height: 1.2em;
@@ -3242,7 +3207,7 @@
             <textarea id="guestMessage" v-model="guestbook.newMessage" required="" maxlength="100" placeholder="Say something..."></textarea>
           </div>
           <button type="submit" class="form-submit-button" :disabled="guestbook.isSubmitting">
-            <i v-if="guestbook.isSubmitting" class="ph ph-spinner-gap"></i><span>{{ guestbook.isSubmitting ? 'Launch in progress...' : 'Launch danmakus'}}</span>
+            <i v-if="guestbook.isSubmitting" class="ph ph-spinner-gap"></i><span>{{ guestbook.isSubmitting ? 'Sending...' : 'Send Message'}}</span>
           </button>
         </form>
         <button @click="toggleGuestbookExpanded" class="fab-toggle" aria-label="Leave message">
@@ -3982,12 +3947,7 @@
             isExpanded: false,
             status: { message: "", type: "" },
           });
-          const activeDanmaku = ref([]);
-          let danmakuQueue = [],
-            pollInterval = null;
-          let animationFrameId = null;
-          let lastDanmakuTime = 0;
-          const danmakuIntervalMs = 3000;
+
           const fetchMessages = async () => {
             try {
               const response = await fetch(config.guestbookApiUrl);
@@ -3999,20 +3959,20 @@
               }
               const freshMessages = await response.json();
               guestbook.value.messages = freshMessages;
-              danmakuQueue = [...freshMessages].reverse();
               guestbook.value.isReady = true;
             } catch (err) {
-              console.error("Failed to retrieve danmakus:", err);
-              guestbook.value.error = err.message || "Unable to load danmaku messages.";
+              console.error("Failed to retrieve guestbook messages:", err);
+              guestbook.value.error = err.message || "Unable to load messages.";
             }
           };
+
           const submitMessage = async () => {
             if (guestbook.value.isSubmitting) return;
             const name = guestbook.value.newName.trim(),
               message = guestbook.value.newMessage.trim();
             if (!name || !message) {
               guestbook.value.status = {
-                message: "The nickname and content cannot be empty.",
+                message: "Name and message cannot be empty.",
                 type: "error",
               };
               return;
@@ -4033,11 +3993,10 @@
               }
               const latestMessages = await response.json();
               guestbook.value.messages = latestMessages;
-              danmakuQueue = [...latestMessages].reverse();
               guestbook.value.newName = "";
               guestbook.value.newMessage = "";
               guestbook.value.status = {
-                message: "Launch successful.",
+                message: "Message sent successfully.",
                 type: "success",
               };
               setTimeout(() => {
@@ -4045,86 +4004,22 @@
                 guestbook.value.status = { message: "", type: "" };
               }, 1500);
             } catch (e) {
-              console.error("Submission of danmakus failed:", e);
+              console.error("Guestbook submission failed:", e);
               guestbook.value.status = {
-                message: e.message || "Launch failed, please try again later.",
+                message: e.message || "Send failed, please try again later.",
                 type: "error",
               };
             } finally {
               guestbook.value.isSubmitting = false;
             }
           };
-          const danmakuLoop = (timestamp) => {
-            if (!lastDanmakuTime) {
-              lastDanmakuTime = timestamp;
-            }
-            const elapsed = timestamp - lastDanmakuTime;
-            if (elapsed > danmakuIntervalMs) {
-              lastDanmakuTime = timestamp;
-              if (danmakuQueue.length > 0 && activeDanmaku.value.length <= 10) {
-                const msg = danmakuQueue.shift();
-                danmakuQueue.push(msg);
-                const duration = Math.random() * 8 + 12;
-                const danmaku = {
-                  id: Date.now() + Math.random(),
-                  name: msg.name,
-                  message: msg.message,
-                  style: {
-                    top: `${Math.random() * 80 + 5}%`,
-                    animationDuration: `${duration}s`,
-                    color: `hsl(${Math.random() * 360}, 80%, 85%)`,
-                  },
-                };
-                activeDanmaku.value.push(danmaku);
-                setTimeout(() => {
-                  const index = activeDanmaku.value.findIndex(
-                    (d) => d.id === danmaku.id
-                  );
-                  if (index > -1) {
-                    activeDanmaku.value.splice(index, 1);
-                  }
-                }, duration * 1000 + 100);
-              }
-            }
-            animationFrameId = requestAnimationFrame(danmakuLoop);
-          };
-          const startDanmakuStream = () => {
-            stopDanmakuStream();
-            lastDanmakuTime = 0;
-            animationFrameId = requestAnimationFrame(danmakuLoop);
-          };
-          const stopDanmakuStream = () => {
-            if (animationFrameId) {
-              cancelAnimationFrame(animationFrameId);
-              animationFrameId = null;
-            }
-          };
-          const handleVisibilityChange = () => {
-            if (document.hidden) {
-              stopDanmakuStream();
-            } else {
-              startDanmakuStream();
-            }
-          };
+
           const init = async () => {
             await fetchMessages();
-            startDanmakuStream();
-            document.addEventListener(
-              "visibilitychange",
-              handleVisibilityChange
-            );
-            if (pollInterval) clearInterval(pollInterval);
-            pollInterval = setInterval(fetchMessages, 60000);
           };
-          onUnmounted(() => {
-            stopDanmakuStream();
-            document.removeEventListener(
-              "visibilitychange",
-              handleVisibilityChange
-            );
-            if (pollInterval) clearInterval(pollInterval);
-          });
-          return { guestbook, activeDanmaku, init, submitMessage };
+
+          onUnmounted(() => {});
+          return { guestbook, init, submitMessage };
         };
 
         createApp({
@@ -4179,7 +4074,6 @@
             };
             const {
               guestbook,
-              activeDanmaku,
               init: initGuestbook,
               submitMessage: submitGuestbookMessage,
             } = useGuestbook();
@@ -4944,7 +4838,6 @@
               ...music,
               switchResume,
               guestbook,
-              activeDanmaku,
               submitGuestbookMessage,
               toggleGuestbookExpanded,
               github,
