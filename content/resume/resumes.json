@@ -1,12 +1,7 @@
 [
   {
-    "id": "undergraduate",
+    "id": "info",
     "label": "**",
-    "location": "./content/resume/undergraduate.json"
-  },
-  {
-    "id": "master",
-    "label": "**",
-    "location": "./content/resume/master.json"
+    "location": "./content/resume/info.json"
   }
 ]

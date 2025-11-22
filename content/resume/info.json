@@ -1,0 +1,52 @@
+{
+  "name": "RinCynar",
+  "phone": "******",
+  "email": "me@rincynar.top",
+  "location": "Internet",
+  "politicalStatus": "******",
+  "education": [
+    {
+      "institution": "******",
+      "major": "******",
+      "minor": "******",
+      "duration": "****** - *****",
+      "gpa": "****/****",
+      "majorScore": "*****",
+      "ranking": "*/**",
+      "courses": {
+        "major": ["*****", "*****", "*****"],
+        "minor": ["****", "****", "****", "****"]
+      }
+    }
+  ],
+  "projects": [
+    {
+      "name": "*********",
+      "role": "*****",
+      "duration": "******** - ********",
+      "task": "*********",
+      "action": "*********",
+      "result": "*********"
+    }
+  ],
+  "campusExperience": [
+    {
+      "role": "****",
+      "duration": "******** - ********",
+      "description": "*********"
+    }
+  ],
+  "skills": [
+    { "category": "-****", "items": ["****", "****"] },
+    { "category": "*-***", "items": ["****", "****", "****"] },
+    { "category": "**-**", "items": ["****", "****", "****", "****"] },
+    { "category": "***-*", "items": ["****", "****"] }
+  ],
+  "honors": [
+    "******", "*********"
+  ]
+}
+
+
+
+
