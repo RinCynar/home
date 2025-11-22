@@ -2018,7 +2018,14 @@
         display: block; /* 确保图片为块级元素以便边距生效 */
       }
       /* --- 修复结束 --- */
-      /* Guestbook / FAB styles removed */
+      .fab-form-title {
+        text-align: center;
+        color: var(--text-color-white);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      /* Guestbook / FAB removed */
       .footer-section {
         padding: 4rem 2rem 2rem;
         text-align: center;
@@ -2509,7 +2516,22 @@
           grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
           gap: 1rem;
         }
-        /* Guestbook FAB responsive styles removed */
+        .fab-container {
+          bottom: 20px;
+          left: 20px;
+          width: 50px;
+          height: 50px;
+          border-radius: 25px;
+        }
+        .fab-toggle {
+          width: 50px;
+          height: 50px;
+          font-size: 1.5rem;
+        }
+        .fab-container.expanded {
+          width: min(350px, 90vw);
+          height: 320px;
+        }
         .play-button {
           width: 50px;
           height: 50px;
@@ -3075,30 +3097,7 @@
           </transition>
         </section>
       </main>
-      <div class="fab-container glass-effect" :class="{ 'expanded': guestbook.isExpanded }">
-        <form class="fab-form">
-          <h3 class="fab-form-title">Leave a message</h3>
-          <p class="modal-status-message" style="
-              text-align: center;
-              min-height: 1.2em;
-              font-size: 0.9em;
-              margin-bottom: 1rem;
-              font-weight: 500;
-            " :class="guestbook.status.type" aria-live="polite">
-            {{ guestbook.status.message }}
-          </p>
-          <div class="form-group">
-            <input type="text" id="guestName" v-model="guestbook.newName" required="" maxlength="20" placeholder="What should we call you?">
-          </div>
-          <div class="form-group">
-            <textarea id="guestMessage" v-model="guestbook.newMessage" required="" maxlength="100" placeholder="Say something..."></textarea>
-          </div>
-          <button type="button" class="form-submit-button" disabled>
-            <span>Messages disabled</span>
-          </button>
-        </form>
-        <!-- Guestbook toggle removed -->
-      </div>
+      <!-- Guestbook / floating messages removed -->
       <footer class="footer-section glass-effect anim-fade-in-up" id="footer" data-section="footer">
         <h4 class="footer-title">Weathercock</h4>
         <p class="footer-subtitle">More</p>
@@ -3278,7 +3277,6 @@
         } = Vue;
 
         const config = {
-          // guestbook feature removed; endpoint removed
           siteStartDate: "2025-11-22",
           icpNumber: "",
           github: {
@@ -3821,7 +3819,7 @@
             loadAllData,
           };
         };
-        // Guestbook/danmaku feature fully removed
+        // Guestbook/danmaku feature removed (server routes may still exist)
 
         createApp({
           setup() {
@@ -3873,12 +3871,7 @@
                   "https://placehold.co/400x600/1a1a1a/ffffff?text=Image+Failed";
               },
             };
-            const {
-              guestbook,
-              // guestbook removed
-              // guestbook submission removed
-            } = useGuestbook();
-            // guestbook UI and controls removed
+            // Guestbook/danmaku removed
             const { currentTheme, setTheme, initTheme } = useTheme();
             const {
               isScrolling,
@@ -4499,7 +4492,6 @@
             onMounted(async () => {
               initTheme();
               loadCustomSonglists();
-              // guestbook feature removed; no initialization
               siteUptime.value = `${Math.ceil(
                 Math.abs(new Date() - new Date(config.siteStartDate)) / 864e5
               )} day(s)`;
@@ -4636,9 +4628,6 @@
               ...data,
               ...music,
               switchResume,
-              guestbook,
-              submitGuestbookMessage,
-              toggleGuestbookExpanded,
               github,
               copyrightYear,
               icp,
