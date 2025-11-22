@@ -65,7 +65,7 @@ p,li,div{font-size:1rem;line-height:1.6;color:var(--md-sys-on-surface)}
 
 /* Hero adjustments */
 .initial-hero-section.mui-card{padding:3rem;border-radius:20px;text-align:center}
-.hero-text-container{font-weight:800;font-size:clamp(2rem,6vw,3.6rem);color:var(--md-sys-on-surface)}
+.hero-text-container{font-weight:800;/* restored larger hero size to match pre-refactor visuals */font-size:clamp(3rem,12vw,6.5rem);color:var(--md-sys-on-surface)}
 
 /* Cards and lists */
 .repo-card, .book-card, .mui-card{background:var(--md-sys-surface);border:1px solid var(--md-sys-outline);border-radius:16px;padding:16px;color:var(--md-sys-on-surface);transition:transform .22s ease,box-shadow .22s ease}
