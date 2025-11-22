@@ -3104,6 +3104,10 @@
         <div class="icon-links-bar">
           <a v-for="link in footerIconLinks" :key="link.text" :href="link.url" class="icon-link"><span v-html="link.icon"></span><span>{{ link.text }}</span></a>
         </div>
+        <p class="footer-subtitle">Friend links</p>
+        <div class="icon-links-bar friend-links-bar">
+          <a v-for="link in friendLinks" :key="`friend-${link.text}`" :href="link.url" class="icon-link"><span v-html="link.icon"></span><span>{{ link.text }}</span></a>
+        </div>
         <div class="info-links">
           <a href="https://www.youtube.com/watch?v=fzQ6gRAEoy0">And it's a long way forward...♭</a>
         </div>
@@ -3296,6 +3300,7 @@
             growth: "./content/growth.json",
             bookshelf: "./content/bookshelf/bookshelf.json",
             footerLinks: "./content/footer-links.json",
+            friendLinks: "./content/friend-links.json",
             localPlaylistsManifest: "./content/music/local_playlists.json",
           },
         };
@@ -3755,6 +3760,7 @@
             bookshelf = ref([]),
             blogPosts = ref([]),
             footerIconLinks = ref([]),
+            friendLinks = ref([]),
             localPlaylistsManifest = ref([]);
           const loadResumeContent = async (path) => {
             if (!path) return;
@@ -3771,6 +3777,7 @@
               books,
               blogManifest,
               footerLinks,
+              friendLinksData,
               localManifest,
             ] = await Promise.all([
               dataLoaderService.fetchMarkdown(config.contentPaths.about),
@@ -3780,6 +3787,7 @@
               dataLoaderService.fetchJSON(config.contentPaths.bookshelf),
               dataLoaderService.fetchJSON(config.contentPaths.blogManifest),
               dataLoaderService.fetchJSON(config.contentPaths.footerLinks),
+              dataLoaderService.fetchJSON(config.contentPaths.friendLinks),
               dataLoaderService.fetchJSON(
                 config.contentPaths.localPlaylistsManifest
               ),
@@ -3800,6 +3808,7 @@
             bookshelf.value = books || [];
             blogPosts.value = blogManifest || [];
             footerIconLinks.value = footerLinks || [];
+            friendLinks.value = friendLinksData || [];
             localPlaylistsManifest.value = localManifest || [];
           };
           return {
@@ -3814,6 +3823,7 @@
             bookshelf,
             blogPosts,
             footerIconLinks,
+            friendLinks,
             localPlaylistsManifest,
             loadedLocalPlaylists,
             loadAllData,
