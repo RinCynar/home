@@ -2018,105 +2018,7 @@
         display: block; /* 确保图片为块级元素以便边距生效 */
       }
       /* --- 修复结束 --- */
-      .fab-form-title {
-        text-align: center;
-        color: var(--text-color-white);
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-      }
-      .fab-container {
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        z-index: 15;
-        transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1),
-          height 0.6s cubic-bezier(0.65, 0, 0.35, 1),
-          border-radius 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-        width: 60px;
-        height: 60px;
-        border-radius: 30px;
-      }
-      .fab-container.expanded {
-        width: min(400px, 90vw);
-        height: 320px;
-        border-radius: 24px;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-      .fab-toggle {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 17;
-        background-color: var(--accent-color);
-        color: #121212;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        cursor: pointer;
-        box-shadow: 0 4px 12px var(--shadow-color);
-        transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-      }
-      .fab-toggle:hover {
-        transform: scale(1.1) rotate(15deg);
-      }
-      .fab-container.expanded .fab-toggle {
-        background-color: transparent;
-        color: var(--text-color);
-        box-shadow: none;
-        transform: rotate(180deg);
-      }
-      .fab-container.expanded .fab-toggle:hover {
-        transform: scale(1.1) rotate(180deg);
-      }
-      .fab-form {
-        width: 100%;
-        height: 100%;
-        padding: 1.5rem;
-        box-sizing: border-box;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(10px);
-        transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
-        display: flex;
-        flex-direction: column;
-      }
-      .fab-container.expanded .fab-form {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-      }
-      .fab-form .form-group {
-        margin-bottom: 1rem;
-      }
-      .fab-form .form-group input,
-      .fab-form .form-group textarea {
-        width: 100%;
-        padding: 0.6rem 0.8rem;
-        border-radius: 12px;
-        border: 1px solid var(--glass-border-color);
-        color: var(--text-color);
-        font-size: 0.9rem;
-        background: var(--input-bg);
-      }
-      .fab-form .form-group textarea {
-        resize: none;
-        height: 80px;
-      }
-      .fab-form .form-group input:focus,
-      .fab-form .form-group textarea:focus {
-        outline: none;
-        border-color: var(--accent-color);
-      }
-      .fab-form .form-submit-button {
-        margin-top: auto;
-      }
+      /* Guestbook / FAB styles removed */
       .footer-section {
         padding: 4rem 2rem 2rem;
         text-align: center;
@@ -2607,22 +2509,7 @@
           grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
           gap: 1rem;
         }
-        .fab-container {
-          bottom: 20px;
-          left: 20px;
-          width: 50px;
-          height: 50px;
-          border-radius: 25px;
-        }
-        .fab-toggle {
-          width: 50px;
-          height: 50px;
-          font-size: 1.5rem;
-        }
-        .fab-container.expanded {
-          width: min(350px, 90vw);
-          height: 320px;
-        }
+        /* Guestbook FAB responsive styles removed */
         .play-button {
           width: 50px;
           height: 50px;
@@ -3189,7 +3076,7 @@
         </section>
       </main>
       <div class="fab-container glass-effect" :class="{ 'expanded': guestbook.isExpanded }">
-        <form @submit.prevent="submitGuestbookMessage" class="fab-form">
+        <form class="fab-form">
           <h3 class="fab-form-title">Leave a message</h3>
           <p class="modal-status-message" style="
               text-align: center;
@@ -3206,13 +3093,11 @@
           <div class="form-group">
             <textarea id="guestMessage" v-model="guestbook.newMessage" required="" maxlength="100" placeholder="Say something..."></textarea>
           </div>
-          <button type="submit" class="form-submit-button" :disabled="guestbook.isSubmitting">
-            <i v-if="guestbook.isSubmitting" class="ph ph-spinner-gap"></i><span>{{ guestbook.isSubmitting ? 'Sending...' : 'Send Message'}}</span>
+          <button type="button" class="form-submit-button" disabled>
+            <span>Messages disabled</span>
           </button>
         </form>
-        <button @click="toggleGuestbookExpanded" class="fab-toggle" aria-label="Leave message">
-          <i class="ph-fill" :class="guestbook.isExpanded ? 'ph-x' : 'ph-chat-centered-dots'"></i>
-        </button>
+        <!-- Guestbook toggle removed -->
       </div>
       <footer class="footer-section glass-effect anim-fade-in-up" id="footer" data-section="footer">
         <h4 class="footer-title">Weathercock</h4>
@@ -3393,7 +3278,7 @@
         } = Vue;
 
         const config = {
-          guestbookApiUrl: "https://firebase.rincynar.top/messages",
+          // guestbook feature removed; endpoint removed
           siteStartDate: "2025-11-22",
           icpNumber: "",
           github: {
@@ -3936,91 +3821,7 @@
             loadAllData,
           };
         };
-        const useGuestbook = () => {
-          const guestbook = ref({
-            isReady: false,
-            error: null,
-            isSubmitting: false,
-            newName: "",
-            newMessage: "",
-            messages: [],
-            isExpanded: false,
-            status: { message: "", type: "" },
-          });
-
-          const fetchMessages = async () => {
-            try {
-              const response = await fetch(config.guestbookApiUrl);
-              if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                  errorData.error || `Proxy server response error: ${response.status}`
-                );
-              }
-              const freshMessages = await response.json();
-              guestbook.value.messages = freshMessages;
-              guestbook.value.isReady = true;
-            } catch (err) {
-              console.error("Failed to retrieve guestbook messages:", err);
-              guestbook.value.error = err.message || "Unable to load messages.";
-            }
-          };
-
-          const submitMessage = async () => {
-            if (guestbook.value.isSubmitting) return;
-            const name = guestbook.value.newName.trim(),
-              message = guestbook.value.newMessage.trim();
-            if (!name || !message) {
-              guestbook.value.status = {
-                message: "Name and message cannot be empty.",
-                type: "error",
-              };
-              return;
-            }
-            guestbook.value.isSubmitting = true;
-            guestbook.value.status = { message: "", type: "" };
-            try {
-              const response = await fetch(config.guestbookApiUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, message }),
-              });
-              if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                  errorData.error || `Proxy server submission error: ${response.status}`
-                );
-              }
-              const latestMessages = await response.json();
-              guestbook.value.messages = latestMessages;
-              guestbook.value.newName = "";
-              guestbook.value.newMessage = "";
-              guestbook.value.status = {
-                message: "Message sent successfully.",
-                type: "success",
-              };
-              setTimeout(() => {
-                guestbook.value.isExpanded = false;
-                guestbook.value.status = { message: "", type: "" };
-              }, 1500);
-            } catch (e) {
-              console.error("Guestbook submission failed:", e);
-              guestbook.value.status = {
-                message: e.message || "Send failed, please try again later.",
-                type: "error",
-              };
-            } finally {
-              guestbook.value.isSubmitting = false;
-            }
-          };
-
-          const init = async () => {
-            await fetchMessages();
-          };
-
-          onUnmounted(() => {});
-          return { guestbook, init, submitMessage };
-        };
+        // Guestbook/danmaku feature fully removed
 
         createApp({
           setup() {
@@ -4074,12 +3875,10 @@
             };
             const {
               guestbook,
-              init: initGuestbook,
-              submitMessage: submitGuestbookMessage,
+              // guestbook removed
+              // guestbook submission removed
             } = useGuestbook();
-            const toggleGuestbookExpanded = () => {
-              guestbook.value.isExpanded = !guestbook.value.isExpanded;
-            };
+            // guestbook UI and controls removed
             const { currentTheme, setTheme, initTheme } = useTheme();
             const {
               isScrolling,
@@ -4700,7 +4499,7 @@
             onMounted(async () => {
               initTheme();
               loadCustomSonglists();
-              initGuestbook();
+              // guestbook feature removed; no initialization
               siteUptime.value = `${Math.ceil(
                 Math.abs(new Date() - new Date(config.siteStartDate)) / 864e5
               )} day(s)`;
