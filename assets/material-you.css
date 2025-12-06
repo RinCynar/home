@@ -401,7 +401,7 @@ a:hover {
     font-size: 2.5rem;
   }
   .mui-container {
-    padding: 1.5rem;
+    padding: 0.75rem;
   }
 }
 
@@ -3442,8 +3442,8 @@ a:hover {
 @media (max-width: 768px) {
   .about-us-card {
     flex-direction: column !important;
-    padding: 1.5rem !important;
-    gap: 1.5rem !important;
+    padding: 1rem !important; /* Reduced from 1.5rem */
+    gap: 1rem !important;
   }
   .about-sidebar {
     flex-direction: row !important;
@@ -3468,7 +3468,7 @@ a:hover {
   
   /* Ensure all cards use constrained padding on mobile */
   .mui-card, .content-card, .repo-card, .book-card, .glass-effect {
-    padding: 1.25rem !important;
+    padding: 1rem !important; /* Reduced from 1.25rem */
   }
   
   /* Fix Hero padding */
