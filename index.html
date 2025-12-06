@@ -605,8 +605,7 @@
                 <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z" clip-rule="evenodd"></path>
               </svg>
             </button>
-            <input id="accent-picker" type="color" title="Accent color" style="margin-left:8px;border-radius:6px;border:none;width:36px;height:28px;padding:0;">
-            <button id="accent-reset" class="mui-button outlined" title="Reset accent" style="margin-left:6px;padding:6px 8px;font-size:0.9rem;">Reset</button>
+
           </div>
         </div>
       </footer>
@@ -2181,48 +2180,7 @@
         }).mount("#app");
       });
     </script>
-      <script>
-        // Accent picker wiring (Material You control)
-        document.addEventListener('DOMContentLoaded', () => {
-          try {
-            const picker = document.getElementById('accent-picker');
-            const reset = document.getElementById('accent-reset');
-            const defaultAccent = '#6750A4';
-            const apply = (hex) => {
-              if (window.MUITheme && typeof window.MUITheme.setAccent === 'function') {
-                window.MUITheme.setAccent(hex);
-              } else {
-                document.documentElement.style.setProperty('--accent-color', hex);
-              }
-            };
 
-            const init = () => {
-              const saved = (window.MUITheme && window.MUITheme.getAccent && window.MUITheme.getAccent()) || null;
-              const initial = saved || defaultAccent;
-              if (picker) picker.value = initial;
-              apply(initial);
-            };
-
-            if (picker) {
-              picker.addEventListener('input', (e) => {
-                apply(e.target.value);
-              });
-            }
-            if (reset) {
-              reset.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (picker) picker.value = defaultAccent;
-                if (window.MUITheme && window.MUITheme.setAccent) window.MUITheme.setAccent(defaultAccent);
-                else apply(defaultAccent);
-              });
-            }
-
-            init();
-          } catch (e) {
-            console.error('Accent picker init failed', e);
-          }
-        });
-      </script>
   
 
 </body></html>
