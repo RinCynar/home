@@ -11,11 +11,6 @@ async function fetchJSON(path) {
 }
 
 export const contentService = {
-  getAbout: () => fetchText("/content/about.md"),
-  getProjects: () => fetchJSON("/content/projects.json"),
-  getBooks: () => fetchJSON("/content/books.json"),
-  getLinks: () => fetchJSON("/content/links.json"),
   getBlogManifest: () => fetchJSON("/content/blog/manifest.json"),
-  getInterests: () => fetchJSON("/content/interests/interests.json"),
   getMarkdown: (path) => fetchText(path),
 };

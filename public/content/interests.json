@@ -1,0 +1,22 @@
+{
+  "main": {
+    "title": "Shelter",
+    "subtitle": "Porter Robinson & Madeon",
+    "href": "https://www.youtube.com/watch?v=fzQ6gRAEoy0",
+    "poster": "/content/interests/main/shelter.webp"
+  },
+  "anime": [
+    {
+      "title": "Honkai: Star Rail",
+      "subtitle": "HOYOVERSE",
+      "href": "https://hsr.hoyoverse.com/",
+      "poster": "/content/interests/anime/star-rail.webp"
+    },
+    {
+      "title": "Wuthering Waves",
+      "subtitle": "KURO",
+      "href": "https://wutheringwaves.kurogames.com/",
+      "poster": "/content/interests/anime/wuthering-waves.webp"
+    }
+  ]
+}

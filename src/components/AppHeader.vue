@@ -55,7 +55,9 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
         </a>
       </nav>
       <div class="header-actions">
-        <ThemeSwitch />
+        <div class="theme-desktop">
+          <ThemeSwitch />
+        </div>
         <button
           class="menu-toggle"
           type="button"
@@ -79,5 +81,8 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
     >
       {{ link.label }}
     </a>
+    <div class="mobile-theme">
+      <ThemeSwitch />
+    </div>
   </nav>
 </template>

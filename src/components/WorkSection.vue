@@ -26,7 +26,7 @@ const { projects, loading, error, section } = useGithub();
     </div>
     <div class="work-foot">
       <a class="btn btn-tonal" :href="config.github.spaceUrl" target="_blank" rel="noopener noreferrer">
-        View all on GitHub
+        GitHub
         <ArrowUpRight :size="16" />
       </a>
     </div>

@@ -13,6 +13,7 @@ const emit = defineEmits(["back", "image"]);
 const html = ref("");
 const toc = ref([]);
 const loading = ref(true);
+const tocOpen = ref(false);
 
 const numberedToc = computed(() =>
   toc.value.map((item, index) => ({
@@ -60,15 +61,27 @@ watch(() => props.post.id, load);
       <span>{{ post.date }}</span>
       <span>{{ post.category }}</span>
     </div>
-    <nav v-if="numberedToc.length" class="toc" aria-label="Contents">
-      <h3>Contents</h3>
-      <ol>
-        <li v-for="item in numberedToc" :key="item.id">
-          <a :href="`#${item.id}`">{{ item.label }}</a>
-        </li>
-      </ol>
-    </nav>
-    <p v-if="loading">Loading article…</p>
-    <div v-else class="prose" v-html="html" @click="onClick"></div>
+    <div class="article-layout">
+      <nav v-if="numberedToc.length" class="toc" aria-label="Contents">
+        <button
+          class="toc-toggle"
+          type="button"
+          :aria-expanded="tocOpen"
+          @click="tocOpen = !tocOpen"
+        >
+          Contents
+        </button>
+        <h3 class="toc-title">Contents</h3>
+        <ol class="toc-list" :class="{ 'is-open': tocOpen }">
+          <li v-for="item in numberedToc" :key="item.id">
+            <a :href="`#${item.id}`">{{ item.label }}</a>
+          </li>
+        </ol>
+      </nav>
+      <div class="article-body">
+        <p v-if="loading">Loading article…</p>
+        <div v-else class="prose" v-html="html" @click="onClick"></div>
+      </div>
+    </div>
   </article>
 </template>

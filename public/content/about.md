@@ -19,5 +19,5 @@ Maybe I dabble in everything, but I’m not good at anything. But it doesn’t m
 </p>
 <div class="about-tags">
 <h3>Tags</h3>
-<p>INTP-T · Slackoff · Arrangement · Animegames · Insanity</p>
+<p>INTP-T · Anime · Insanity</p>
 </div>

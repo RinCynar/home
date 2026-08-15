@@ -13,13 +13,6 @@ export const config = {
     spaceUrl: "https://github.com/RinCynar",
     worker: "https://github.rincynar.top/",
   },
-  music: {
-    api: "https://music.rincynar.top/",
-    server: "netease",
-    type: "playlist",
-    defaultId: "17467366630",
-    defaultName: "Default",
-  },
   email: {
     endpoint: "https://email.rincynar.top",
   },

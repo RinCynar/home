@@ -11,7 +11,6 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.6",
     "@phosphor-icons/vue": "^2.2.1",
-    "aplayer": "^1.10.1",
     "katex": "^0.16.22",
     "marked": "^15.0.12",
     "vue": "^3.5.17"

@@ -33,9 +33,9 @@ Edit files in `public/content/`:
 - `about.md` — about section
 - `projects.json` — featured work
 - `blog/` — articles
-- `interests/` — interest notes
+- `interests.json` — Main / Anime
+- `interests/` — local posters
 - `books.json` — bookshelf
-- `links.json` — footer links
 
 ## Workers
 
