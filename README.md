@@ -36,6 +36,7 @@ Edit files in `public/content/`:
 - `interests.json` — Main / Anime
 - `interests/` — local posters
 - `books.json` — bookshelf
+- `friends.json` — friend links
 
 ## Workers
 

@@ -14,6 +14,7 @@ const links = [
   { id: "work", label: "Work" },
   { id: "writing", label: "Writing" },
   { id: "interests", label: "Interests" },
+  { id: "friends", label: "Friends" },
 ];
 
 const menuOpen = ref(false);

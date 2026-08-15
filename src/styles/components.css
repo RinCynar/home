@@ -175,14 +175,32 @@
   }
 }
 
-.interest-block + .interest-block {
-  margin-top: var(--md-space-6);
+.interest-box {
+  padding: var(--md-space-4);
+  border-radius: var(--md-radius-extra-large);
+  background: var(--md-surface-container);
 }
 
-.interest-heading {
-  font-size: 1rem;
-  font-weight: 650;
-  margin-bottom: var(--md-space-3);
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--md-space-4);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface-variant);
+}
+
+.chip.is-active {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
 }
 
 .media-card,
@@ -196,16 +214,30 @@
   border-radius: var(--md-radius-extra-large);
 }
 
+.interest-box .media-card,
+.interest-box .anime-card,
+.interest-box .book-card {
+  background: var(--md-surface-container-low);
+}
+
+.media-frame {
+  position: relative;
+}
+
 .media-card img,
-.anime-card img {
+.anime-card img,
+.video-frame {
   width: 100%;
   object-fit: cover;
   background: var(--md-surface-container-highest);
   transition: transform var(--md-motion-medium) var(--md-ease-standard);
 }
 
-.media-card img {
+.media-card img,
+.video-frame {
   aspect-ratio: 16 / 9;
+  display: block;
+  border: 0;
 }
 
 .anime-card img {
@@ -219,7 +251,6 @@
 
 .media-card-play {
   position: absolute;
-  inset: 0 auto auto 0;
   top: 50%;
   left: 50%;
   display: grid;
@@ -229,7 +260,7 @@
   border-radius: 50%;
   color: var(--md-on-primary);
   background: color-mix(in srgb, var(--md-primary) 88%, black);
-  transform: translate(-50%, -70%);
+  transform: translate(-50%, -50%);
 }
 
 .media-card-copy,
@@ -237,8 +268,8 @@
   padding: 14px 16px 16px;
 }
 
-.media-card-copy h4,
-.anime-card-copy h4 {
+.media-card-copy h3,
+.anime-card-copy h3 {
   margin: 0 0 4px;
   font-size: 1.05rem;
 }
@@ -255,6 +286,34 @@
 .anime-grid {
   display: grid;
   gap: var(--md-space-4);
+}
+
+.friend-grid {
+  display: grid;
+  gap: var(--md-space-3);
+}
+
+.friend-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: var(--md-space-4);
+  border-radius: var(--md-radius-extra-large);
+  background: var(--md-surface-container);
+  color: inherit;
+  text-decoration: none;
+}
+
+.friend-card span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.friend-card small {
+  color: var(--md-on-surface-variant);
 }
 
 .book-row {
@@ -509,7 +568,12 @@
 }
 
 @media (min-width: 768px) {
-  .anime-grid {
+  .interest-box {
+    padding: var(--md-space-5);
+  }
+
+  .anime-grid,
+  .friend-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -555,7 +619,8 @@
 
 @media (hover: hover) and (pointer: fine) {
   .media-card:hover,
-  .anime-card:hover {
+  .anime-card:hover,
+  .friend-card:hover {
     transform: translateY(-2px);
   }
 

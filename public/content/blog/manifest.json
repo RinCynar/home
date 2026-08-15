@@ -3,7 +3,6 @@
     "id": 1,
     "slug": "quotes",
     "title": "Quotes",
-    "category": "Normal",
     "description": "A pocket of lines I keep coming back to.",
     "filePath": "/content/blog/insanity.md"
   }

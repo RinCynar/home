@@ -6,6 +6,7 @@ import AppHeader from "./components/AppHeader.vue";
 import BookDialog from "./components/BookDialog.vue";
 import HeroSection from "./components/HeroSection.vue";
 import ImageDialog from "./components/ImageDialog.vue";
+import FriendsSection from "./components/FriendsSection.vue";
 import InterestsSection from "./components/InterestsSection.vue";
 import WorkSection from "./components/WorkSection.vue";
 import WritingSection from "./components/WritingSection.vue";
@@ -48,6 +49,7 @@ onUnmounted(() => observer?.disconnect());
     <WorkSection />
     <WritingSection @image="imageSrc = $event" />
     <InterestsSection @book="selectedBook = $event" />
+    <FriendsSection />
   </main>
   <AppFooter />
   <ImageDialog :src="imageSrc" @close="imageSrc = ''" />
