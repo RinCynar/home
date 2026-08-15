@@ -9,7 +9,7 @@ import ImageDialog from "./components/ImageDialog.vue";
 import FriendsSection from "./components/FriendsSection.vue";
 import InterestsSection from "./components/InterestsSection.vue";
 import WorkSection from "./components/WorkSection.vue";
-import WritingSection from "./components/WritingSection.vue";
+import ThoughtsSection from "./components/ThoughtsSection.vue";
 
 const activeSection = ref("hero");
 const imageSrc = ref("");
@@ -49,7 +49,7 @@ onUnmounted(() => observer?.disconnect());
     <WorkSection />
     <InterestsSection @book="selectedBook = $event" />
     <FriendsSection />
-    <WritingSection @image="imageSrc = $event" />
+    <ThoughtsSection @image="imageSrc = $event" />
   </main>
   <AppFooter />
   <ImageDialog :src="imageSrc" @close="imageSrc = ''" />

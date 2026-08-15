@@ -11,7 +11,7 @@ import friends from "../../public/content/friends.json";
     aria-labelledby="friends-title"
   >
     <p class="section-label">Friendly links</p>
-    <h2 id="friends-title" class="section-title">People · Project · And`</h2>
+    <h2 id="friends-title" class="section-title">People · Project · And</h2>
     <div class="friend-grid">
       <a
         v-for="friend in friends"

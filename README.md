@@ -1,47 +1,32 @@
 # RinCynar Home
 
-Personal space. Material You-inspired, progressively rendered, built with Vue 3 + Vite.
-
-## Local
+Personal space. Material You-inspired, built with Vue 3 + Vite.
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
-
-```bash
-npm run build
-npm run preview
-```
-
 ## Cloudflare Pages
-
-Set these in the project:
 
 - **Build command:** `npm run build`
 - **Build output directory:** `dist`
-- **Node version:** `20` (see `.nvmrc`)
-
-HTML is not cached. Fingerprinted files under `/assets/` are immutable.
+- **Node version:** `20`
 
 ## Content
 
 Edit files in `public/content/`:
 
-- `about.md` — about section
-- `projects.json` — featured work
-- `blog/` — articles
-- `interests.json` — Main / Anime
-- `interests/` — local posters
-- `books.json` — bookshelf
-- `friends.json` — friend links
+- `about.md`
+- `projects.json`
+- `interests.json` — Main, Anime, Books
+- `interests/` — posters and book covers
+- `friends.json`
+- `thoughts/` — articles
 
 ## Workers
 
-`worker/` is deployed separately:
+Deployed separately:
 
-- `github-proxy.js` — GitHub API + 15-minute edge cache
-- `music-proxy.js` — playlist proxy
+- `github-proxy.js` — GitHub API + edge cache
 - `email-proxy.js` — contact form

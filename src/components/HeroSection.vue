@@ -1,6 +1,5 @@
 <script setup>
 import { PhArrowUpRight as ArrowUpRight } from "@phosphor-icons/vue";
-import { config } from "@/config";
 
 const emit = defineEmits(["navigate"]);
 

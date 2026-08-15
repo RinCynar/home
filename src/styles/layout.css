@@ -222,7 +222,7 @@
   gap: var(--md-space-4);
 }
 
-.writing-list {
+.thoughts-list {
   display: grid;
   gap: var(--md-space-3);
 }

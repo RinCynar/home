@@ -18,6 +18,21 @@
       "subtitle": "KURO",
       "href": "https://wutheringwaves.kurogames.com/",
       "poster": "/content/interests/anime/wuthering-waves.webp"
+    },
+    {
+      "title": "Arknights",
+      "subtitle": "Hypergryph",
+      "href": "https://ak.hypergryph.com/",
+      "poster": "/content/interests/anime/arknights.webp"
+    }
+  ],
+  "books": [
+    {
+      "title": "药娘的天空",
+      "author": "乱世银娘",
+      "coverUrl": "/content/interests/books/progynova.webp",
+      "url": "https://transky.mtf.wiki/",
+      "review": "千篇一律的景，时长时短的影。无人相伴的路，惝恍迷离的舞。"
     }
   ]
 }

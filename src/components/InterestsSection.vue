@@ -1,7 +1,6 @@
 <script setup>
 import { PhArrowUpRight as ArrowUpRight, PhPlay as Play } from "@phosphor-icons/vue";
 import { ref, watch } from "vue";
-import books from "../../public/content/books.json";
 import interests from "../../public/content/interests.json";
 
 const emit = defineEmits(["book"]);
@@ -112,7 +111,7 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
 
       <div v-else id="interest-books" class="book-row" role="tabpanel">
         <button
-          v-for="book in books"
+          v-for="book in interests.books"
           :key="book.title"
           class="book-card"
           type="button"

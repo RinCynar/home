@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "slug": "Thoughts",
+    "slug": "thoughts",
     "title": "Thoughts",
     "description": "Just fragments.",
-    "filePath": "/content/blog/insanity.md"
+    "filePath": "/content/thoughts/insanity.md"
   }
 ]

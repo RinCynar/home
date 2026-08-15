@@ -1,7 +1,6 @@
 <script setup>
 import { PhArrowLeft as ArrowLeft } from "@phosphor-icons/vue";
 import { computed, onMounted, ref, watch } from "vue";
-import { contentService } from "@/services/content";
 import { renderMarkdown } from "@/services/markdown";
 
 const props = defineProps({
@@ -25,7 +24,9 @@ const numberedToc = computed(() =>
 async function load() {
   loading.value = true;
   try {
-    const source = await contentService.getMarkdown(props.post.filePath);
+    const response = await fetch(props.post.filePath);
+    if (!response.ok) throw new Error(props.post.filePath);
+    const source = await response.text();
     const rendered = await renderMarkdown(source);
     html.value = rendered.html;
     toc.value = rendered.toc;
@@ -57,9 +58,9 @@ watch(() => props.post.id, load);
       </button>
     </div>
     <h2>{{ post.title }}</h2>
-    <div class="article-meta">
-      <span>{{ post.date }}</span>
-      <span>{{ post.category }}</span>
+    <div v-if="post.date || post.category" class="article-meta">
+      <span v-if="post.date">{{ post.date }}</span>
+      <span v-if="post.category">{{ post.category }}</span>
     </div>
     <div class="article-layout">
       <nav v-if="numberedToc.length" class="toc" aria-label="Contents">
