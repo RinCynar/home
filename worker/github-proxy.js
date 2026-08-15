@@ -25,41 +25,68 @@
 
 
 addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request))
+    event.respondWith(handleRequest(event))
 })
+
+const CACHE_TTL_SECONDS = 900;
 
 /**
  * Worker 的主入口，负责处理所有传入的 HTTP 请求。
- * @param {Request} request 客户端发起的请求对象。
+ * 先查 Cloudflare Cache，未命中再回源 GitHub。
  */
-async function handleRequest(request) {
-    // 验证 GITHUB_TOKEN 是否已在 Worker 的 secrets 中正确配置。
+async function handleRequest(event) {
+    const request = event.request;
+
+    if (request.method === 'OPTIONS') {
+        return new Response(null, { status: 204, headers: corsHeaders() });
+    }
+
     if (typeof GITHUB_TOKEN === 'undefined' || !GITHUB_TOKEN) {
         return new Response('错误: GITHUB_TOKEN 未在 Worker secrets 中配置。', { status: 500, headers: corsHeaders() })
     }
 
     const url = new URL(request.url)
     const username = url.searchParams.get('username')
-    const endpoint = url.searchParams.get('endpoint') || 'pinned'; // 默认端点为 'pinned'
+    const endpoint = url.searchParams.get('endpoint') || 'pinned';
 
     if (!username) {
         return new Response('请求错误: 缺少 "username" 查询参数。', { status: 400, headers: corsHeaders() })
     }
 
+    const cache = caches.default;
+    const cacheKey = new Request(url.toString(), { method: 'GET' });
+    const cached = await cache.match(cacheKey);
+    if (cached) {
+        const hit = new Response(cached.body, cached);
+        hit.headers.set('X-Cache', 'HIT');
+        return hit;
+    }
+
     try {
-        // 根据 'endpoint' 参数将请求路由到相应的处理函数。
+        let response;
         switch (endpoint) {
-            case 'stats': // 获取用户统计数据
-                return await fetchUserStats(username, GITHUB_TOKEN);
-            case 'pinned': // 获取用户置顶仓库
-                return await fetchPinnedRepos(username, GITHUB_TOKEN);
-            case 'repos': // 代理获取用户仓库列表的 REST API 请求
-                return await proxyRestApi(request, `/users/${username}/repos`, GITHUB_TOKEN);
-            case 'events': // 代理获取用户动态事件的 REST API 请求
-                return await proxyRestApi(request, `/users/${username}/events`, GITHUB_TOKEN);
+            case 'stats':
+                response = await fetchUserStats(username, GITHUB_TOKEN);
+                break;
+            case 'pinned':
+                response = await fetchPinnedRepos(username, GITHUB_TOKEN);
+                break;
+            case 'repos':
+                response = await proxyRestApi(request, `/users/${username}/repos`, GITHUB_TOKEN);
+                break;
+            case 'events':
+                response = await proxyRestApi(request, `/users/${username}/events`, GITHUB_TOKEN);
+                break;
             default:
                 return new Response('请求错误: 指定了无效的 "endpoint"。', { status: 400, headers: corsHeaders() });
         }
+
+        const headers = new Headers(response.headers);
+        headers.set('Cache-Control', `public, s-maxage=${CACHE_TTL_SECONDS}`);
+        headers.set('X-Cache', 'MISS');
+        const cacheable = new Response(response.body, { status: response.status, headers });
+        event.waitUntil(cache.put(cacheKey, cacheable.clone()));
+        return cacheable;
     } catch (error) {
         console.error(`处理端点 "${endpoint}" 时出错:`, error.message);
         return new Response(`获取端点 "${endpoint}" 的数据失败。`, { status: 502, headers: corsHeaders() });

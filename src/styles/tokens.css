@@ -1,0 +1,116 @@
+:root {
+  --seed: #6750a4;
+
+  --md-primary: #c8b4ff;
+  --md-on-primary: #351c73;
+  --md-primary-container: #4d368b;
+  --md-on-primary-container: #e9ddff;
+
+  --md-secondary: #cbc2db;
+  --md-on-secondary: #332d41;
+  --md-secondary-container: #4a4458;
+  --md-on-secondary-container: #e8def8;
+
+  --md-tertiary: #efb8c8;
+  --md-on-tertiary: #4a2532;
+
+  --md-surface: #141318;
+  --md-surface-dim: #141318;
+  --md-surface-bright: #3a383e;
+  --md-surface-container-lowest: #0f0e13;
+  --md-surface-container-low: #1c1b20;
+  --md-surface-container: #201f25;
+  --md-surface-container-high: #2b292f;
+  --md-surface-container-highest: #36343b;
+
+  --md-on-surface: #e6e1e8;
+  --md-on-surface-variant: #cac4d0;
+  --md-outline: #948f99;
+  --md-outline-variant: #49454e;
+  --md-inverse-surface: #e6e1e8;
+  --md-inverse-on-surface: #313035;
+
+  --md-error: #ffb4ab;
+  --md-on-error: #690005;
+
+  --md-radius-small: 8px;
+  --md-radius-medium: 12px;
+  --md-radius-large: 16px;
+  --md-radius-extra-large: 24px;
+  --md-radius-hero: 28px;
+
+  --md-space-1: 4px;
+  --md-space-2: 8px;
+  --md-space-3: 12px;
+  --md-space-4: 16px;
+  --md-space-5: 24px;
+  --md-space-6: 32px;
+  --md-space-7: 48px;
+  --md-space-8: 64px;
+
+  --md-elevation-0: none;
+  --md-elevation-1: 0 1px 2px rgba(0, 0, 0, 0.28), 0 1px 3px 1px rgba(0, 0, 0, 0.12);
+  --md-elevation-2: 0 2px 6px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.16);
+  --md-elevation-3: 0 8px 24px rgba(0, 0, 0, 0.36), 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  --md-motion-fast: 150ms;
+  --md-motion-medium: 200ms;
+  --md-motion-slow: 280ms;
+  --md-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-ease-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+
+  --md-font: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei",
+    sans-serif;
+
+  --page-pad: 16px;
+  --page-max: 1120px;
+  --prose-max: 680px;
+  --header-h: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+:root[data-theme="light"] {
+  --md-primary: #5b4b99;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #e9ddff;
+  --md-on-primary-container: #21005e;
+
+  --md-secondary: #625b71;
+  --md-on-secondary: #ffffff;
+  --md-secondary-container: #e8def8;
+  --md-on-secondary-container: #1e192b;
+
+  --md-tertiary: #7d5260;
+  --md-on-tertiary: #ffffff;
+
+  --md-surface: #f7f5fa;
+  --md-surface-dim: #d8d5dc;
+  --md-surface-bright: #f7f5fa;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #f2eef6;
+  --md-surface-container: #ece8f0;
+  --md-surface-container-high: #e6e1ea;
+  --md-surface-container-highest: #e0dbe4;
+
+  --md-on-surface: #1c1b20;
+  --md-on-surface-variant: #49454e;
+  --md-outline: #7a757f;
+  --md-outline-variant: #cac4d0;
+  --md-inverse-surface: #313035;
+  --md-inverse-on-surface: #f4eff6;
+
+  --md-error: #ba1a1a;
+  --md-on-error: #ffffff;
+
+  --md-elevation-1: 0 1px 2px rgba(32, 24, 48, 0.08), 0 1px 3px rgba(32, 24, 48, 0.06);
+  --md-elevation-2: 0 2px 8px rgba(32, 24, 48, 0.1);
+  --md-elevation-3: 0 12px 32px rgba(32, 24, 48, 0.16);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-pad: 24px;
+    --header-h: 72px;
+  }
+}
