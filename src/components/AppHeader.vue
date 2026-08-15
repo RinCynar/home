@@ -12,9 +12,9 @@ const emit = defineEmits(["navigate"]);
 const links = [
   { id: "about", label: "About" },
   { id: "work", label: "Work" },
-  { id: "writing", label: "Writing" },
   { id: "interests", label: "Interests" },
   { id: "friends", label: "Friends" },
+  { id: "thoughts", label: "Thoughts" },
 ];
 
 const menuOpen = ref(false);

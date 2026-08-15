@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "slug": "quotes",
-    "title": "Quotes",
-    "description": "A pocket of lines I keep coming back to.",
+    "slug": "Thoughts",
+    "title": "Thoughts",
+    "description": "Just fragments.",
     "filePath": "/content/blog/insanity.md"
   }
 ]

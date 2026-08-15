@@ -285,7 +285,8 @@
 
 .anime-grid {
   display: grid;
-  gap: var(--md-space-4);
+  grid-template-columns: minmax(0, 220px);
+  gap: var(--md-space-3);
 }
 
 .friend-grid {
@@ -572,12 +573,12 @@
     padding: var(--md-space-5);
   }
 
-  .anime-grid,
   .friend-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .book-row {
+  .book-row,
+  .anime-grid {
     grid-template-columns: repeat(2, minmax(0, 180px));
   }
 

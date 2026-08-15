@@ -41,15 +41,15 @@ onUnmounted(() => observer?.disconnect());
 
 <template>
   <section
-    id="writing"
+    id="thoughts"
     ref="section"
     class="section page-shell"
-    data-section="writing"
-    aria-labelledby="writing-title"
+    data-section="thoughts"
+    aria-labelledby="thoughts-title"
   >
     <template v-if="!active">
-      <p class="section-label">Writing</p>
-      <h2 id="writing-title" class="section-title">Notes and fragments</h2>
+      <p class="section-label">Thoughts</p>
+      <h2 id="thoughts-title" class="section-title">Notes and fragments</h2>
       <div v-if="loading" class="writing-list" aria-busy="true">
         <div class="skeleton-card"></div>
       </div>

@@ -53,7 +53,7 @@ watch(() => props.post.id, load);
     <div class="article-toolbar">
       <button class="btn btn-tonal" type="button" @click="emit('back')">
         <ArrowLeft :size="16" />
-        All writing
+        All thoughts
       </button>
     </div>
     <h2>{{ post.title }}</h2>

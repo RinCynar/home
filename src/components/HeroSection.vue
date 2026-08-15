@@ -6,8 +6,9 @@ const emit = defineEmits(["navigate"]);
 
 const secondary = [
   { text: "StartPage", url: "https://start.rincynar.top" },
-  { text: "DL", url: "https://dl.rincynar.top" },
-  { text: "TV", url: "https://tv.rincynar.top/" },
+  { text: "TV", url: "https://tv.rincynar.top" },
+  { text: "Chatroom", url: "https://chat.rincynar.top" },
+  { text: "Contact", url: "https://rincynar.top/contact" },
 ];
 </script>
 
@@ -19,15 +20,15 @@ const secondary = [
     <div class="hero-actions">
       <a
         class="btn btn-filled"
-        :href="config.github.spaceUrl"
+        href="https://blog.rincynar.top"
         target="_blank"
         rel="noopener noreferrer"
       >
-        GitHub
+        Blog
         <ArrowUpRight :size="16" weight="bold" />
       </a>
-      <button class="btn btn-tonal" type="button" @click="emit('navigate', 'writing')">
-        Writing
+      <button class="btn btn-tonal" type="button" @click="emit('navigate', 'thoughts')">
+        Thoughts
       </button>
     </div>
     <nav class="hero-links" aria-label="Other spaces">

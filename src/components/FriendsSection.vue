@@ -10,8 +10,8 @@ import friends from "../../public/content/friends.json";
     data-section="friends"
     aria-labelledby="friends-title"
   >
-    <p class="section-label">Friends</p>
-    <h2 id="friends-title" class="section-title">People nearby</h2>
+    <p class="section-label">Friendly links</p>
+    <h2 id="friends-title" class="section-title">People · Project · And`</h2>
     <div class="friend-grid">
       <a
         v-for="friend in friends"

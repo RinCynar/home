@@ -30,7 +30,7 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
     aria-labelledby="interests-title"
   >
     <p class="section-label">Interests</p>
-    <h2 id="interests-title" class="section-title">Things I linger with</h2>
+    <h2 id="interests-title" class="section-title">And things I linger with</h2>
 
     <div class="interest-box">
       <div class="chip-row" role="tablist" aria-label="Interest categories">

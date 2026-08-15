@@ -47,9 +47,9 @@ onUnmounted(() => observer?.disconnect());
     <HeroSection @navigate="navigate" />
     <AboutSection />
     <WorkSection />
-    <WritingSection @image="imageSrc = $event" />
     <InterestsSection @book="selectedBook = $event" />
     <FriendsSection />
+    <WritingSection @image="imageSrc = $event" />
   </main>
   <AppFooter />
   <ImageDialog :src="imageSrc" @close="imageSrc = ''" />

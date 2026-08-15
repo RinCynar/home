@@ -16,7 +16,7 @@ const { projects, loading, error, section } = useGithub();
     aria-labelledby="work-title"
   >
     <p class="section-label">Selected work</p>
-    <h2 id="work-title" class="section-title">Things I keep building</h2>
+    <h2 id="work-title" class="section-title">And things I building</h2>
     <p v-if="error" class="article-meta">{{ error }}</p>
     <div class="card-grid" :aria-busy="loading">
       <ProjectCard v-for="project in projects" :key="project.key" :project="project" />
