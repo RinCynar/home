@@ -27,7 +27,7 @@ function resolveTheme(value) {
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  const color = theme === "light" ? "#f7f5fa" : "#141318";
+  const color = theme === "light" ? "#f7faf8" : "#101414";
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute("content", color);
 }
