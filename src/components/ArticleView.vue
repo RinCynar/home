@@ -1,6 +1,7 @@
 <script setup>
 import { PhArrowLeft as ArrowLeft } from "@phosphor-icons/vue";
 import { computed, onMounted, ref, watch } from "vue";
+import { useI18n } from "@/composables/useI18n";
 import { renderMarkdown } from "@/services/markdown";
 
 const props = defineProps({
@@ -8,6 +9,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["back", "image"]);
+const { t } = useI18n();
 
 const html = ref("");
 const toc = ref([]);
@@ -31,7 +33,7 @@ async function load() {
     html.value = rendered.html;
     toc.value = rendered.toc;
   } catch {
-    html.value = "<p>This article could not be loaded.</p>";
+    html.value = `<p>${t('thoughts.loadError')}</p>`;
     toc.value = [];
   } finally {
     loading.value = false;
@@ -54,7 +56,7 @@ watch(() => props.post.id, load);
     <div class="article-toolbar">
       <button class="btn btn-tonal" type="button" @click="emit('back')">
         <ArrowLeft :size="16" />
-        All thoughts
+        {{ t('thoughts.allThoughts') }}
       </button>
     </div>
     <h2>{{ post.title }}</h2>
@@ -63,16 +65,16 @@ watch(() => props.post.id, load);
       <span v-if="post.category">{{ post.category }}</span>
     </div>
     <div class="article-layout">
-      <nav v-if="numberedToc.length" class="toc" aria-label="Contents">
+      <nav v-if="numberedToc.length" class="toc" :aria-label="t('thoughts.contents')">
         <button
           class="toc-toggle"
           type="button"
           :aria-expanded="tocOpen"
           @click="tocOpen = !tocOpen"
         >
-          Contents
+          {{ t('thoughts.contents') }}
         </button>
-        <h3 class="toc-title">Contents</h3>
+        <h3 class="toc-title">{{ t('thoughts.contents') }}</h3>
         <ol class="toc-list" :class="{ 'is-open': tocOpen }">
           <li v-for="item in numberedToc" :key="item.id">
             <a :href="`#${item.id}`">{{ item.label }}</a>
@@ -80,7 +82,7 @@ watch(() => props.post.id, load);
         </ol>
       </nav>
       <div class="article-body">
-        <p v-if="loading">Loading article…</p>
+        <p v-if="loading">{{ t('thoughts.loading') }}</p>
         <div v-else class="prose" v-html="html" @click="onClick"></div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 <script setup>
 import { PhX as X } from "@phosphor-icons/vue";
 import { computed } from "vue";
+import { useI18n } from "@/composables/useI18n";
 import { useDialog } from "@/composables/useDialog";
 
 const props = defineProps({
@@ -8,6 +9,7 @@ const props = defineProps({
 });
 const emit = defineEmits(["close"]);
 const open = computed(() => Boolean(props.book));
+const { t } = useI18n();
 useDialog(open, { onClose: () => emit("close") });
 </script>
 
@@ -18,17 +20,17 @@ useDialog(open, { onClose: () => emit("close") });
       <div>
         <div class="article-toolbar">
           <h3 :id="`book-${book.title}`">{{ book.title }}</h3>
-          <button class="icon-btn" type="button" aria-label="Close book" @click="emit('close')">
+          <button class="icon-btn" type="button" :aria-label="t('book.close')" @click="emit('close')">
             <X :size="18" />
           </button>
         </div>
         <p class="article-meta">{{ book.author }}</p>
-        <p class="article-meta" :aria-label="`${book.rating} stars`">
+        <p class="article-meta" :aria-label="t('book.stars', { n: book.rating })">
           <span v-for="n in 5" :key="n">{{ n <= book.rating ? "★" : "☆" }}</span>
         </p>
-        <p>“{{ book.review }}”</p>
+        <p>"{{ book.review }}"</p>
         <p style="margin-top: 20px">
-          <a class="btn btn-filled" :href="book.url" target="_blank" rel="noopener noreferrer">View details</a>
+          <a class="btn btn-filled" :href="book.url" target="_blank" rel="noopener noreferrer">{{ t('book.viewDetails') }}</a>
         </p>
       </div>
     </div>

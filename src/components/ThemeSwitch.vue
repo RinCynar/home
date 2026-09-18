@@ -1,28 +1,40 @@
 <script setup>
+import { useI18n } from "@/composables/useI18n";
 import { PhMonitor as Monitor, PhMoon as Moon, PhSun as Sun } from "@phosphor-icons/vue";
 import { useTheme } from "@/composables/useTheme";
 
 const { preference, setPreference } = useTheme();
-
-const modes = [
-  { id: "system", label: "System theme", icon: Monitor },
-  { id: "light", label: "Light theme", icon: Sun },
-  { id: "dark", label: "Dark theme", icon: Moon },
-];
+const { t } = useI18n();
 </script>
 
 <template>
-  <div class="theme-switch" role="group" aria-label="Color theme">
+  <div class="theme-switch" role="group" :aria-label="t('nav.colorTheme')">
     <button
-      v-for="mode in modes"
-      :key="mode.id"
       type="button"
-      :aria-label="mode.label"
-      :aria-pressed="preference === mode.id"
-      :title="mode.label"
-      @click="setPreference(mode.id)"
+      :aria-label="t('nav.systemTheme')"
+      :aria-pressed="preference === 'system'"
+      :title="t('nav.systemTheme')"
+      @click="setPreference('system')"
     >
-      <component :is="mode.icon" :size="16" weight="bold" />
+      <Monitor :size="16" weight="bold" />
+    </button>
+    <button
+      type="button"
+      :aria-label="t('nav.lightTheme')"
+      :aria-pressed="preference === 'light'"
+      :title="t('nav.lightTheme')"
+      @click="setPreference('light')"
+    >
+      <Sun :size="16" weight="bold" />
+    </button>
+    <button
+      type="button"
+      :aria-label="t('nav.darkTheme')"
+      :aria-pressed="preference === 'dark'"
+      :title="t('nav.darkTheme')"
+      @click="setPreference('dark')"
+    >
+      <Moon :size="16" weight="bold" />
     </button>
   </div>
 </template>

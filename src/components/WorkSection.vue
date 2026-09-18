@@ -1,10 +1,12 @@
 <script setup>
 import { PhArrowUpRight as ArrowUpRight } from "@phosphor-icons/vue";
 import { config } from "@/config";
+import { useI18n } from "@/composables/useI18n";
 import { useGithub } from "@/composables/useGithub";
 import ProjectCard from "./ProjectCard.vue";
 
 const { projects, loading, error, section } = useGithub();
+const { t } = useI18n();
 </script>
 
 <template>
@@ -15,8 +17,8 @@ const { projects, loading, error, section } = useGithub();
     data-section="work"
     aria-labelledby="work-title"
   >
-    <p class="section-label">Selected work</p>
-    <h2 id="work-title" class="section-title">And things I building</h2>
+    <p class="section-label">{{ t('work.label') }}</p>
+    <h2 id="work-title" class="section-title">{{ t('work.title') }}</h2>
     <p v-if="error" class="article-meta">{{ error }}</p>
     <div class="card-grid" :aria-busy="loading">
       <ProjectCard v-for="project in projects" :key="project.key" :project="project" />

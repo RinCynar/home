@@ -10,6 +10,9 @@ import FriendsSection from "./components/FriendsSection.vue";
 import InterestsSection from "./components/InterestsSection.vue";
 import WorkSection from "./components/WorkSection.vue";
 import ThoughtsSection from "./components/ThoughtsSection.vue";
+import { useI18n } from "./composables/useI18n";
+
+const { t } = useI18n();
 
 const activeSection = ref("hero");
 const imageSrc = ref("");
@@ -41,7 +44,7 @@ onUnmounted(() => observer?.disconnect());
 </script>
 
 <template>
-  <a class="skip-link" href="#about">Skip to content</a>
+  <a class="skip-link" href="#about">{{ t('nav.skipToContent') }}</a>
   <AppHeader :active="activeSection" @navigate="navigate" />
   <main>
     <HeroSection @navigate="navigate" />

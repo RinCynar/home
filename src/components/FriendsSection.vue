@@ -1,6 +1,9 @@
 <script setup>
 import { PhArrowUpRight as ArrowUpRight } from "@phosphor-icons/vue";
+import { useI18n } from "@/composables/useI18n";
 import friends from "../../public/content/friends.json";
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -10,8 +13,8 @@ import friends from "../../public/content/friends.json";
     data-section="friends"
     aria-labelledby="friends-title"
   >
-    <p class="section-label">Friendly links</p>
-    <h2 id="friends-title" class="section-title">People · Project · And</h2>
+    <p class="section-label">{{ t('friends.label') }}</p>
+    <h2 id="friends-title" class="section-title">{{ t('friends.title') }}</h2>
     <div class="friend-grid">
       <a
         v-for="friend in friends"

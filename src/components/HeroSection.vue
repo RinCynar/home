@@ -1,7 +1,9 @@
 <script setup>
 import { PhArrowUpRight as ArrowUpRight } from "@phosphor-icons/vue";
+import { useI18n } from "@/composables/useI18n";
 
 const emit = defineEmits(["navigate"]);
+const { t } = useI18n();
 
 const secondary = [
   { text: "StartPage", url: "https://start.rincynar.top" },
@@ -16,7 +18,7 @@ const secondary = [
   <section id="hero" class="hero page-shell" data-section="hero" aria-labelledby="hero-title">
     <p class="hero-kicker">Ciallo～(∠・ω&lt; )⌒☆</p>
     <h1 id="hero-title">RinCynar</h1>
-    <p class="hero-sub">Philosopher · Gamer · wandering through this life</p>
+    <p class="hero-sub">{{ t('hero.sub') }}</p>
     <div class="hero-actions">
       <a
         class="btn btn-filled"
@@ -24,14 +26,14 @@ const secondary = [
         target="_blank"
         rel="noopener noreferrer"
       >
-        Blog
+        {{ t('hero.blog') }}
         <ArrowUpRight :size="16" weight="bold" />
       </a>
       <button class="btn btn-tonal" type="button" @click="emit('navigate', 'thoughts')">
-        Thoughts
+        {{ t('hero.thoughts') }}
       </button>
     </div>
-    <nav class="hero-links" aria-label="Other spaces">
+    <nav class="hero-links" :aria-label="t('hero.otherSpaces')">
       <a
         v-for="link in secondary"
         :key="link.text"

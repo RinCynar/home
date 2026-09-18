@@ -1,6 +1,7 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import localProjects from "../../public/content/projects.json";
 import { getGithubPinned } from "@/services/github";
+import { useI18n } from "@/composables/useI18n";
 
 function parseRepo(entry) {
   if (typeof entry === "string") return { repo: entry, featured: false };
@@ -8,11 +9,12 @@ function parseRepo(entry) {
 }
 
 function toCard(pinned, fallback) {
+  const { t } = useI18n();
   if (pinned) {
     return {
       key: `${pinned.owner}/${pinned.repo}`,
       name: `${pinned.owner}/${pinned.repo}`,
-      description: pinned.description || "No description available",
+      description: pinned.description || t("work.noDescription"),
       url: pinned.link,
       language: pinned.language || "Text",
       languageColor: pinned.languageColor || "#948f99",
@@ -24,7 +26,7 @@ function toCard(pinned, fallback) {
   return {
     key: fallback.repo,
     name: fallback.repo,
-    description: "Selected project",
+    description: t("work.fallbackDesc"),
     url: `https://github.com/${owner}/${name}`,
     language: "GitHub",
     languageColor: "#948f99",
@@ -41,11 +43,12 @@ export function useGithub() {
   let observer;
 
   const load = async () => {
+    const { t } = useI18n();
     loading.value = true;
     error.value = "";
     try {
       const pinned = await getGithubPinned().catch((err) => {
-        error.value = "GitHub is taking a rest. Local project list is shown instead.";
+        error.value = t("work.errorFallback");
         console.error(err);
         return [];
       });
@@ -76,7 +79,7 @@ export function useGithub() {
 
       projects.value = selected;
     } catch (err) {
-      error.value = "Selected work could not be loaded.";
+      error.value = t("work.loadError");
       console.error(err);
     } finally {
       loading.value = false;

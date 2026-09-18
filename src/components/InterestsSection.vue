@@ -1,16 +1,13 @@
 <script setup>
 import { PhArrowUpRight as ArrowUpRight, PhPlay as Play } from "@phosphor-icons/vue";
 import { ref, watch } from "vue";
+import { useI18n } from "@/composables/useI18n";
 import interests from "../../public/content/interests.json";
 
 const emit = defineEmits(["book"]);
+const { t } = useI18n();
 
-const tabs = [
-  { id: "main", label: "Main" },
-  { id: "anime", label: "Anime" },
-  { id: "books", label: "Books" },
-];
-
+const tabIds = ["main", "anime", "books"];
 const active = ref("main");
 const playing = ref(false);
 
@@ -28,23 +25,23 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
     data-section="interests"
     aria-labelledby="interests-title"
   >
-    <p class="section-label">Interests</p>
-    <h2 id="interests-title" class="section-title">And things I linger with</h2>
+    <p class="section-label">{{ t('interests.label') }}</p>
+    <h2 id="interests-title" class="section-title">{{ t('interests.title') }}</h2>
 
     <div class="interest-box">
-      <div class="chip-row" role="tablist" aria-label="Interest categories">
+      <div class="chip-row" role="tablist" :aria-label="t('interests.categories')">
         <button
-          v-for="tab in tabs"
-          :key="tab.id"
+          v-for="id in tabIds"
+          :key="id"
           class="chip"
           type="button"
           role="tab"
-          :class="{ 'is-active': active === tab.id }"
-          :aria-selected="active === tab.id"
-          :aria-controls="`interest-${tab.id}`"
-          @click="active = tab.id"
+          :class="{ 'is-active': active === id }"
+          :aria-selected="active === id"
+          :aria-controls="`interest-${id}`"
+          @click="active = id"
         >
-          {{ tab.label }}
+          {{ t(`interests.tabs.${id}`) }}
         </button>
       </div>
 
@@ -71,7 +68,7 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
               <button
                 class="media-card-play"
                 type="button"
-                aria-label="Play Shelter"
+                :aria-label="t('interests.playLabel')"
                 @click="playing = true"
               >
                 <Play :size="28" weight="fill" />

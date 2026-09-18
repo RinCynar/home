@@ -1,6 +1,8 @@
 <script setup>
 import { PhList as List, PhX as X } from "@phosphor-icons/vue";
 import { onMounted, onUnmounted, ref } from "vue";
+import { useI18n } from "@/composables/useI18n";
+import LangSwitch from "./LangSwitch.vue";
 import ThemeSwitch from "./ThemeSwitch.vue";
 
 const props = defineProps({
@@ -9,13 +11,9 @@ const props = defineProps({
 
 const emit = defineEmits(["navigate"]);
 
-const links = [
-  { id: "about", label: "About" },
-  { id: "work", label: "Work" },
-  { id: "interests", label: "Interests" },
-  { id: "friends", label: "Friends" },
-  { id: "thoughts", label: "Thoughts" },
-];
+const { t } = useI18n();
+
+const navIds = ["about", "work", "interests", "friends", "thoughts"];
 
 const menuOpen = ref(false);
 const scrolled = ref(false);
@@ -44,19 +42,20 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
         <img src="/icon/favicon.png" width="32" height="32" alt="" />
         RinCynar
       </a>
-      <nav class="desktop-nav" aria-label="Primary">
+      <nav class="desktop-nav" :aria-label="t('nav.primaryNav')">
         <a
-          v-for="link in links"
-          :key="link.id"
-          :href="`#${link.id}`"
-          :aria-current="props.active === link.id"
-          @click.prevent="go(link.id)"
+          v-for="id in navIds"
+          :key="id"
+          :href="`#${id}`"
+          :aria-current="props.active === id"
+          @click.prevent="go(id)"
         >
-          {{ link.label }}
+          {{ t(`nav.${id}`) }}
         </a>
       </nav>
       <div class="header-actions">
         <div class="theme-desktop">
+          <LangSwitch />
           <ThemeSwitch />
         </div>
         <button
@@ -64,7 +63,7 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
           type="button"
           :aria-expanded="menuOpen"
           aria-controls="mobile-nav"
-          :aria-label="menuOpen ? 'Close menu' : 'Open menu'"
+          :aria-label="menuOpen ? t('nav.closeMenu') : t('nav.openMenu')"
           @click="menuOpen = !menuOpen"
         >
           <X v-if="menuOpen" :size="22" />
@@ -73,16 +72,17 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
       </div>
     </div>
   </header>
-  <nav v-if="menuOpen" id="mobile-nav" class="mobile-nav" aria-label="Mobile">
+  <nav v-if="menuOpen" id="mobile-nav" class="mobile-nav" :aria-label="t('nav.mobileNav')">
     <a
-      v-for="link in links"
-      :key="link.id"
-      :href="`#${link.id}`"
-      @click.prevent="go(link.id)"
+      v-for="id in navIds"
+      :key="id"
+      :href="`#${id}`"
+      @click.prevent="go(id)"
     >
-      {{ link.label }}
+      {{ t(`nav.${id}`) }}
     </a>
     <div class="mobile-theme">
+      <LangSwitch />
       <ThemeSwitch />
     </div>
   </nav>

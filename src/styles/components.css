@@ -63,7 +63,8 @@
   color: var(--md-on-surface);
 }
 
-.theme-switch {
+.theme-switch,
+.lang-switch {
   display: flex;
   padding: 3px;
   border-radius: 999px;
@@ -78,6 +79,21 @@
 }
 
 .theme-switch button[aria-pressed="true"] {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+
+.lang-switch button {
+  height: 32px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: var(--md-on-surface-variant);
+}
+
+.lang-switch button[aria-pressed="true"] {
   background: var(--md-primary-container);
   color: var(--md-on-primary-container);
 }
