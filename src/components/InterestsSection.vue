@@ -5,7 +5,7 @@ import { useI18n } from "@/composables/useI18n";
 import interests from "../../public/content/interests.json";
 
 const emit = defineEmits(["book"]);
-const { t } = useI18n();
+const { t, localize } = useI18n();
 
 const tabIds = ["main", "anime", "books"];
 const active = ref("main");
@@ -59,7 +59,7 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
             <template v-else>
               <img
                 :src="interests.main.poster"
-                :alt="interests.main.title"
+                :alt="localize(interests.main.title)"
                 width="1280"
                 height="720"
                 loading="lazy"
@@ -76,8 +76,8 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
             </template>
           </div>
           <div class="media-card-copy">
-            <h3>{{ interests.main.title }}</h3>
-            <span>{{ interests.main.subtitle }}</span>
+            <h3>{{ localize(interests.main.title) }}</h3>
+            <span>{{ localize(interests.main.subtitle) }}</span>
           </div>
         </div>
       </div>
@@ -85,23 +85,23 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
       <div v-else-if="active === 'anime'" id="interest-anime" class="anime-grid" role="tabpanel">
         <a
           v-for="item in interests.anime"
-          :key="item.title"
+          :key="item.id || localize(item.title)"
           class="anime-card"
-          :href="item.href"
+          :href="localize(item.href)"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             :src="item.poster"
-            :alt="item.title"
+            :alt="localize(item.title)"
             width="900"
             height="1200"
             loading="lazy"
             decoding="async"
           />
           <div class="anime-card-copy">
-            <h3>{{ item.title }}</h3>
-            <span>{{ item.subtitle }} <ArrowUpRight :size="14" weight="bold" /></span>
+            <h3>{{ localize(item.title) }}</h3>
+            <span>{{ localize(item.subtitle) }} <ArrowUpRight :size="14" weight="bold" /></span>
           </div>
         </a>
       </div>
@@ -109,22 +109,22 @@ const embedSrc = `${interests.main.embed}?autoplay=1&rel=0`;
       <div v-else id="interest-books" class="book-row" role="tabpanel">
         <button
           v-for="book in interests.books"
-          :key="book.title"
+          :key="book.id || localize(book.title)"
           class="book-card"
           type="button"
           @click="emit('book', book)"
         >
           <img
             :src="book.coverUrl"
-            :alt="book.title"
+            :alt="localize(book.title)"
             width="160"
             height="214"
             loading="lazy"
             decoding="async"
           />
           <figcaption>
-            <strong>{{ book.title }}</strong>
-            <span>{{ book.author }}</span>
+            <strong>{{ localize(book.title) }}</strong>
+            <span>{{ localize(book.author) }}</span>
           </figcaption>
         </button>
       </div>

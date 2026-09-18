@@ -61,9 +61,22 @@ export function useI18n() {
     document.documentElement.lang = value === "zh" ? "zh-Hans" : value;
   }
 
+  /**
+   * Localize a value that could be a multilingual map ({ en, zh, ja })
+   * or a plain string (for untranslated / original content).
+   */
+  function localize(val) {
+    if (val == null) return "";
+    if (typeof val === "object") {
+      return val[locale.value] ?? val.en ?? Object.values(val)[0] ?? "";
+    }
+    return String(val);
+  }
+
   return {
     locale: computed(() => locale.value),
     t,
+    localize,
     setLocale,
     supported: SUPPORTED,
   };

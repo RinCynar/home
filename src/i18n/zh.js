@@ -87,6 +87,24 @@ export default {
     enlarged: "放大图片",
   },
 
+  // 联系
+  contact: {
+    title: "联系",
+    lede: "留下便笺，等我漫游归来时自会阅读。",
+    nameLabel: "称呼",
+    reachLabel: "联系方式类型",
+    contactLabel: "联系方式",
+    messageLabel: "留言内容",
+    send: "发送",
+    sending: "发送中…",
+    sentSuccess: "消息已送达，谢谢。",
+    sendFail: "消息发送失败。",
+    nameRequired: "称呼不能为空",
+    messageRequired: "内容不能为空",
+    contactRequired: "联系方式不能为空",
+    contactInvalid: "联系方式格式不正确",
+  },
+
   // 页脚
   footer: {
     tagline: "And it's a long way forward...♭",

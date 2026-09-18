@@ -1,7 +1,11 @@
 <script setup>
 import { computed, reactive, ref } from "vue";
+import LangSwitch from "@/components/LangSwitch.vue";
 import ThemeSwitch from "@/components/ThemeSwitch.vue";
+import { useI18n } from "@/composables/useI18n";
 import { config } from "@/config";
+
+const { t } = useI18n();
 
 const form = reactive({
   name: "",
@@ -43,12 +47,12 @@ const rules = {
 };
 
 function validate() {
-  errors.name = form.name.trim() ? "" : "Name cannot be empty";
-  errors.message = form.message.trim() ? "" : "Message cannot be empty";
+  errors.name = form.name.trim() ? "" : t("contact.nameRequired");
+  errors.message = form.message.trim() ? "" : t("contact.messageRequired");
   if (!form.contact_value.trim()) {
-    errors.contact_value = "Contact cannot be empty";
+    errors.contact_value = t("contact.contactRequired");
   } else if (!rules[form.contact_method].test(form.contact_value.trim())) {
-    errors.contact_value = "Invalid contact format";
+    errors.contact_value = t("contact.contactInvalid");
   } else {
     errors.contact_value = "";
   }
@@ -66,13 +70,13 @@ async function submit() {
       body: JSON.stringify(form),
     });
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || "Send failed");
-    status.value = "Message sent. Thank you.";
+    if (!response.ok) throw new Error(data.error || t("contact.sendFail"));
+    status.value = t("contact.sentSuccess");
     form.name = "";
     form.contact_value = "";
     form.message = "";
   } catch (error) {
-    status.value = error.message || "Message could not be sent.";
+    status.value = error.message || t("contact.sendFail");
   } finally {
     sending.value = false;
   }
@@ -87,21 +91,22 @@ async function submit() {
         RinCynar
       </a>
       <div class="header-actions">
+        <LangSwitch />
         <ThemeSwitch />
       </div>
     </div>
   </header>
   <main class="page-shell">
     <form class="form-card" @submit.prevent="submit" novalidate>
-      <h1>Contact</h1>
-      <p class="lede">Leave a note. I’ll read it when I wander back.</p>
+      <h1>{{ t('contact.title') }}</h1>
+      <p class="lede">{{ t('contact.lede') }}</p>
       <label class="field">
-        Your name
+        {{ t('contact.nameLabel') }}
         <input v-model="form.name" type="text" autocomplete="name" required />
         <span v-if="errors.name" class="field-error">{{ errors.name }}</span>
       </label>
       <label class="field">
-        How to reach you
+        {{ t('contact.reachLabel') }}
         <select v-model="form.contact_method">
           <option v-for="method in methods" :key="method.value" :value="method.value">
             {{ method.label }}
@@ -109,17 +114,17 @@ async function submit() {
         </select>
       </label>
       <label class="field">
-        Contact
+        {{ t('contact.contactLabel') }}
         <input v-model="form.contact_value" :placeholder="placeholder" required />
         <span v-if="errors.contact_value" class="field-error">{{ errors.contact_value }}</span>
       </label>
       <label class="field">
-        Message
+        {{ t('contact.messageLabel') }}
         <textarea v-model="form.message" maxlength="500" required></textarea>
         <span v-if="errors.message" class="field-error">{{ errors.message }}</span>
       </label>
       <button class="btn btn-filled" type="submit" :disabled="sending">
-        {{ sending ? "Sending…" : "Send" }}
+        {{ sending ? t('contact.sending') : t('contact.send') }}
       </button>
       <p v-if="status" class="form-status" aria-live="polite">{{ status }}</p>
       <div class="social-row">

@@ -87,6 +87,24 @@ export default {
     enlarged: "拡大画像",
   },
 
+  // お問い合わせ
+  contact: {
+    title: "お問い合わせ",
+    lede: "メモを残してください。戻ってきたときに読みます。",
+    nameLabel: "お名前",
+    reachLabel: "連絡方法",
+    contactLabel: "連絡先",
+    messageLabel: "メッセージ",
+    send: "送信",
+    sending: "送信中…",
+    sentSuccess: "送信完了しました。ありがとうございます。",
+    sendFail: "メッセージを送信できませんでした。",
+    nameRequired: "お名前を入力してください",
+    messageRequired: "メッセージを入力してください",
+    contactRequired: "連絡先を入力してください",
+    contactInvalid: "連絡先の形式が正しくありません",
+  },
+
   // フッター
   footer: {
     tagline: "And it's a long way forward...♭",

@@ -87,6 +87,24 @@ export default {
     enlarged: "Enlarged image",
   },
 
+  // Contact
+  contact: {
+    title: "Contact",
+    lede: "Leave a note. I’ll read it when I wander back.",
+    nameLabel: "Your name",
+    reachLabel: "How to reach you",
+    contactLabel: "Contact",
+    messageLabel: "Message",
+    send: "Send",
+    sending: "Sending…",
+    sentSuccess: "Message sent. Thank you.",
+    sendFail: "Message could not be sent.",
+    nameRequired: "Name cannot be empty",
+    messageRequired: "Message cannot be empty",
+    contactRequired: "Contact cannot be empty",
+    contactInvalid: "Invalid contact format",
+  },
+
   // Footer
   footer: {
     tagline: "And it's a long way forward...♭",

@@ -1,4 +1,4 @@
-<h3>これまで</h3>
+<h3>Till'</h3>
 <blockquote>
 And it's a long way forward...♭
 </blockquote>
@@ -19,6 +19,6 @@ RinCynar、あるいは 0rhxCynar、
 何かが永遠に消えないように。
 </p>
 <div class="about-tags">
-<h3>タグ</h3>
+<h3>Tags</h3>
 <p>INTP-T · Posthumanism · インターネット依存 · Cyber-Flâneur</p>
 </div>

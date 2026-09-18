@@ -8,26 +8,66 @@
   },
   "anime": [
     {
-      "title": "Honkai: Star Rail",
-      "subtitle": "HOYOVERSE",
-      "href": "https://hsr.hoyoverse.com/",
+      "id": "star-rail",
+      "title": {
+        "zh": "崩坏：星穹铁道",
+        "ja": "崩壊：スターレイル",
+        "en": "Honkai: Star Rail"
+      },
+      "subtitle": {
+        "zh": "米哈游",
+        "ja": "HoYoverse",
+        "en": "HoYoverse"
+      },
+      "href": {
+        "zh": "https://sr.mihoyo.com/",
+        "ja": "https://hsr.hoyoverse.com/ja-jp/",
+        "en": "https://hsr.hoyoverse.com/"
+      },
       "poster": "/content/interests/anime/star-rail.webp"
     },
     {
-      "title": "Wuthering Waves",
-      "subtitle": "KURO",
-      "href": "https://wutheringwaves.kurogames.com/",
+      "id": "wuthering-waves",
+      "title": {
+        "zh": "鸣潮",
+        "ja": "鳴潮",
+        "en": "Wuthering Waves"
+      },
+      "subtitle": {
+        "zh": "库洛游戏",
+        "ja": "KURO GAMES",
+        "en": "KURO GAMES"
+      },
+      "href": {
+        "zh": "https://mc.kurogames.com/",
+        "ja": "https://wutheringwaves.kurogames.com/jp/",
+        "en": "https://wutheringwaves.kurogames.com/"
+      },
       "poster": "/content/interests/anime/wuthering-waves.webp"
     },
     {
-      "title": "Arknights",
-      "subtitle": "Hypergryph",
-      "href": "https://ak.hypergryph.com/",
+      "id": "arknights",
+      "title": {
+        "zh": "明日方舟",
+        "ja": "アークナイツ",
+        "en": "Arknights"
+      },
+      "subtitle": {
+        "zh": "鹰角网络",
+        "ja": "Yostar",
+        "en": "Hypergryph"
+      },
+      "href": {
+        "zh": "https://ak.hypergryph.com/",
+        "ja": "https://www.arknights.jp/",
+        "en": "https://www.arknights.global/"
+      },
       "poster": "/content/interests/anime/arknights.webp"
     }
   ],
   "books": [
     {
+      "id": "progynova",
       "title": "药娘的天空",
       "author": "乱世银娘",
       "coverUrl": "/content/interests/books/progynova.webp",
