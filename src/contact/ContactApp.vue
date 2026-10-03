@@ -32,7 +32,7 @@ const socials = [
   { text: "GitHub", url: "https://github.com/RinCynar" },
   { text: "LINE", url: "https://line.me/ti/p/VEjru7nFpx" },
   { text: "X", url: "https://x.com/RinCynar" },
-  { text: "Telegram", url: "https://t.me/Rlank39" },
+  { text: "Telegram", url: "https://t.me/Shiraru39" },
   { text: "Discord", url: "https://discord.gg/qfKsfEmu" },
   { text: "Bluesky", url: "https://bsky.app/profile/rincynar.top" },
   { text: "Threads", url: "https://www.threads.net/@im.rincynar" },
