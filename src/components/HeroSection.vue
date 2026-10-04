@@ -10,6 +10,7 @@ const secondary = [
   { text: "TV", url: "https://tv.rincynar.top" },
   { text: "Teigi", url: "https://teigi.rincynar.top" },
   { text: "Chatroom", url: "https://chat.rincynar.top" },
+  { text: "StrongholdProtocol", url: "https://ak.rincynar.top" },
   { text: "Contact", url: "https://rincynar.top/contact" },
 ];
 </script>
